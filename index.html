@@ -40,10 +40,20 @@ div.day {
   float: left;
 }
 
-div.total {
+div.totals {
+  width:151px;
+  height:275px;
+  margin-right:10px;
+  margin-bottom: 10px;
   float: left;
-  clear: left;
-  margin-top:10px;
+}
+
+div.total {
+  margin-top: 5px;
+  margin-right:5px;
+  margin-left:5px;
+  margin-bottom:5px;
+  float: left;
 }
 
 @media(max-width: 300px)
@@ -116,11 +126,22 @@ div.total {
 	</div>
   <br>
 	<div class="container well">
-    <div class="container well total">
-      <h3> Totals </h3>
-      <h id='totalhours'>Current: 0</h>
-      <br>
-      <h id='totalhours'>Pending: 0</h>
+	  <h1> Totals </h1>
+    <div class="container well totals">
+      <div class="form-control-wrapper total">
+        <h3> Default </h3>
+        <h id='def-hours-cur'>Current: 0</h>
+        <br>
+        <h id='def-hours-pen'>Pending: 0</h>
+      </div>
+    </div>
+    <div class="container well totals">
+      <div class="form-control-wrapper total">
+        <h3> This week </h3>
+        <h id='this-hours-cur'>Current: 0</h>
+        <br>
+        <h id='this-hours-cur'>Pending: 0</h>
+      </div>
     </div>
   </div>
 </body>

@@ -17,12 +17,20 @@
     <script src="./script.js"></script>
 </head>
 <body onload="checkUser()">
-  <div class="container well">
+  <div class="container well" id="mon">
     <div class="form-control-wrapper">
-		  <input type="text" id="time-mon-start" class="form-control floating-label" placeholder="Time">
-		  <input type="text" id="time-mon-end" class="form-control floating-label" placeholder="Time">
-	  </div>
-    <br>
+	    <input type="text" id="time-mon-start" class="form-control floating-label" placeholder="Monday Start">
+	    <input type="text" id="time-mon-end" class="form-control floating-label" placeholder="Monday End">
+    </div>
+  </div>
+  <div class="container well" id="tue">
+    <div class="form-control-wrapper">
+	    <input type="text" id="time-tue-start" class="form-control floating-label" placeholder="Tuesday Start">
+	    <input type="text" id="time-tue-end" class="form-control floating-label" placeholder="Tuesday End">
+    </div>
+  <div>
+  <br>
+  <div class="container well">
     <p id='totalhours'>Total: 0</p>
   </div>
 	<div class="container well">

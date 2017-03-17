@@ -24,15 +24,16 @@
 	margin: 10px 20px;
 }
 
-div.day {
-  width:20%;
-  margin: auto;
+div.days {
+    width:100px;
+    height:100px;
+    margin-right:10px;
+    float:left;
 }
 
-div.days {
-  -webkit-column-count: 3; /* Chrome, Safari, Opera */
-  -moz-column-count: 3; /* Firefox */
-  column-count: 3;
+div.day{
+    float:left;
+    margin-right:5px;
 }
 
 @media(max-width: 300px)
@@ -44,16 +45,16 @@ div.days {
 </head>
 <body onload="checkUser()">
   <div class="container well">
-    <div class="days">
-      <div class="container well day" id="mon" style="float:left">
-        <div class="form-control-wrapper">
+    <div>
+      <div class="container well days" id="mon" style="float:left">
+        <div class="form-control-wrapper day">
           <h2> Monday </h2>
 	        <input type="text" id="time-mon-start" class="form-control floating-label" placeholder="Start">
 	        <input type="text" id="time-mon-end" class="form-control floating-label" placeholder="End">
         </div>
       </div>
-      <div class="container well day" id="tue style="float:right"">
-        <div class="form-control-wrapper">
+      <div class="container well days" id="tue style="float:right"">
+        <div class="form-control-wrapper day">
           <h2> Tuesday </h2>
 	        <input type="text" id="time-tue-start" class="form-control floating-label" placeholder="Start">
 	        <input type="text" id="time-tue-end" class="form-control floating-label" placeholder="End">

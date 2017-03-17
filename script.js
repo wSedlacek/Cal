@@ -12,6 +12,7 @@ $(document).ready(function() {
 	});
 
   //Time Picker
+  //Mon
 	$('#time-mon-start').bootstrapMaterialDatePicker
   ({
 	  date: false,
@@ -21,14 +22,109 @@ $(document).ready(function() {
   $("#time-mon-start").change(function(){
     
   });
-
-  
 	$('#time-mon-end').bootstrapMaterialDatePicker
   ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
   });
+  //Tue
+	$('#time-tue-start').bootstrapMaterialDatePicker
+  ({
+	  date: false,
+	  shortTime: true,
+	  format: 'h:mm a'
+  });
+  $("#time-tue-start").change(function(){
+    
+  });
+	$('#time-tue-end').bootstrapMaterialDatePicker
+  ({
+	  date: false,
+	  shortTime: true,
+	  format: 'h:mm a'
+  });
+  //Wed
+	$('#time-wed-start').bootstrapMaterialDatePicker
+  ({
+	  date: false,
+	  shortTime: true,
+	  format: 'h:mm a'
+  });
+  $("#time-wed-start").change(function(){
+    
+  });
+	$('#time-wed-end').bootstrapMaterialDatePicker
+  ({
+	  date: false,
+	  shortTime: true,
+	  format: 'h:mm a'
+  });
+  //Thr
+	$('#time-thr-start').bootstrapMaterialDatePicker
+  ({
+	  date: false,
+	  shortTime: true,
+	  format: 'h:mm a'
+  });
+  $("#time-thr-start").change(function(){
+    
+  });
+	$('#time-thr-end').bootstrapMaterialDatePicker
+  ({
+	  date: false,
+	  shortTime: true,
+	  format: 'h:mm a'
+  });
+  //Fri
+	$('#time-fri-start').bootstrapMaterialDatePicker
+  ({
+	  date: false,
+	  shortTime: true,
+	  format: 'h:mm a'
+  });
+  $("#time-fri-start").change(function(){
+    
+  });
+	$('#time-fri-end').bootstrapMaterialDatePicker
+  ({
+	  date: false,
+	  shortTime: true,
+	  format: 'h:mm a'
+  });
+  //Sat
+	$('#time-sat-start').bootstrapMaterialDatePicker
+  ({
+	  date: false,
+	  shortTime: true,
+	  format: 'h:mm a'
+  });
+  $("#time-sat-start").change(function(){
+    
+  });
+	$('#time-sat-end').bootstrapMaterialDatePicker
+  ({
+	  date: false,
+	  shortTime: true,
+	  format: 'h:mm a'
+  });
+  //Sun
+	$('#time-sun-start').bootstrapMaterialDatePicker
+  ({
+	  date: false,
+	  shortTime: true,
+	  format: 'h:mm a'
+  });
+  $("#time-sun-start").change(function(){
+    
+  });
+	$('#time-sun-end').bootstrapMaterialDatePicker
+  ({
+	  date: false,
+	  shortTime: true,
+	  format: 'h:mm a'
+  });
+  
   $.material.init()
 });
 

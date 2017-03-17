@@ -16,14 +16,14 @@ $(document).ready(function() {
   ({
 	  date: false,
 	  shortTime: true,
-	  format: 'hh:mm'
+	  format: 'h:mm:a'
   });
   
 	$('#time-mon-end').bootstrapMaterialDatePicker
   ({
 	  date: false,
-	  shortTime: false,
-	  format: 'HH:mm'
+	  shortTime: true,
+	  format: 'h:mm:a'
   });
   $.material.init()
 });

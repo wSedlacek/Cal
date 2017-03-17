@@ -16,8 +16,10 @@ body {
 	margin: 10px 20px;
 }
 
-.day {
+div.day {
     max-width: 10%;
+    margin: auto;
+    border: 3px solid #73AD21;
 }
 
 @media(max-width: 300px)

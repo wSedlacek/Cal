@@ -13,7 +13,37 @@
 		<link rel="import" href='./imports/timepicker.html' />
 		<link rel="import" href='./imports/fullcalendar.html' />
 		
-		<link href='./style.css' rel='stylesheet' media='print' />
+		<link rel='./style.css' rel='stylesheet' media='print' />
+		<style>
+		body {
+	margin: 40px 10px;
+	padding: 0;
+	padding-top: 70px;
+	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+	font-size: 14px;
+}
+
+#calendar {
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.form-control-wrapper 
+{
+	margin: 10px 20px;
+}
+
+div.day {
+    width:500px;
+    margin: auto;
+    border: 3px solid #73AD21;
+}
+
+@media(max-width: 300px)
+{
+	.well { margin : 0}
+}
+		</style>
     <script src="./script.js"></script>
 </head>
 <body onload="checkUser()">

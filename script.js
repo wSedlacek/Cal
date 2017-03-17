@@ -15,8 +15,8 @@ $(document).ready(function() {
 	$('#time-mon-start').bootstrapMaterialDatePicker
   ({
 	  date: false,
-	  shortTime: false,
-	  format: 'HH:mm'
+	  shortTime: true,
+	  format: 'hh:mm'
   });
   
 	$('#time-mon-end').bootstrapMaterialDatePicker

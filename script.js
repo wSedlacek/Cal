@@ -18,6 +18,10 @@ $(document).ready(function() {
 	  shortTime: true,
 	  format: 'h:mm a'
   });
+  $("#time-mon-start").change(function(){
+    alert("The text has been changed.");
+  });
+
   
 	$('#time-mon-end').bootstrapMaterialDatePicker
   ({
@@ -26,10 +30,6 @@ $(document).ready(function() {
 	  format: 'h:mm a'
   });
   $.material.init()
-});
-
-$("#time-mon-start").change(function(){
-    alert("The text has been changed.");
 });
 
 function addEvent() {

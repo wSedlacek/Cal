@@ -16,6 +16,10 @@ body {
 	margin: 10px 20px;
 }
 
+.day {
+    max-width: 10%;
+}
+
 @media(max-width: 300px)
 {
 	.well { margin : 0}

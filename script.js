@@ -16,16 +16,20 @@ $(document).ready(function() {
   ({
 	  date: false,
 	  shortTime: true,
-	  format: 'h:mm:a'
+	  format: 'h:mm a'
   });
   
 	$('#time-mon-end').bootstrapMaterialDatePicker
   ({
 	  date: false,
 	  shortTime: true,
-	  format: 'h:mm:a'
+	  format: 'h:mm a'
   });
   $.material.init()
+});
+
+$("#time-mon-start").change(function(){
+    alert("The text has been changed.");
 });
 
 function addEvent() {

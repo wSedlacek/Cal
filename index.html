@@ -15,25 +15,29 @@
 		
 		<link rel='./style.css' rel='stylesheet' media='print' />
 		<style>
-    #calendar {
-	    max-width: 900px;
-	    margin: 0 auto;
-    }
+#calendar {
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-.form-control-wrapper 
-{
+.form-control-wrapper {
 	margin: 10px 20px;
 }
 
 div.day {
-    width:20%;
-    margin: auto;
+  width:20%;
+  margin: auto;
 }
 
+div.days {
+  -webkit-columns: 20% 3; /* Chrome, Safari, Opera */
+  -moz-columns: 20% 3; /* Firefox */
+  columns: 20% 3;
+}
 
 @media(max-width: 300px)
 {
-	.well { margin : 0}
+  .well { margin : 0}
 }
 		</style>
     <script src="./script.js"></script>

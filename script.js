@@ -19,7 +19,7 @@ $(document).ready(function() {
 	  format: 'h:mm a'
   });
   $("#time-mon-start").change(function(){
-    alert("The text has been changed.");
+    
   });
 
   
@@ -33,11 +33,11 @@ $(document).ready(function() {
 });
 
 function addEvent() {
-    var startdrop = document.getElementById("start");
-    var starthour = Number(startdrop.options[startdrop.selectedIndex].value);
+    var startdrop = document.getElementById("#time-mon-start");
+    var starthour = Number();
     
-    var enddrop = document.getElementById("end");
-    var endhour = Number(enddrop.options[enddrop.selectedIndex].value);
+    var enddrop = document.getElementById("#time-mon-end");
+    var endhour = Number();
     
     if (starthour > endhour) {
       console.log(starthour + " " + endhour);

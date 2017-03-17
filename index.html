@@ -2,12 +2,15 @@
 <html>
 <head>
 <meta charset='utf-8' />
-<link href='./fullcalendar.min.css' rel='stylesheet' />
-<link href='./fullcalendar.print.min.css' rel='stylesheet' media='print' />
-<link href='./materialFullCalendar.css' rel='stylesheet' media='print' />
-<script src='./lib/moment.min.js'></script>
-<script src='./lib/jquery.min.js'></script>
-<script src='./fullcalendar.min.js'></script>
+<link href='./bower_components/fullcalendar/dist/fullcalendar.min.css' rel='stylesheet' />
+<link href='./bower_components/fullcalendar/dist/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<link href='./bower_components/wickedpicker/dist/wickedpicker.min.css' rel='stylesheet' media='print' />
+
+
+<script src='./bower_components/moment/min/moment.min.js'></script>
+<script src='./bower_components/jquery/dist/jquery.min.js'></script>
+<script src='./bower_components/fullcalendar/dist/fullcalendar.min.js'></script>
+<script type="text/javascript" src="./bower_components/wickedpicker/dist/wickedpicker.min.js"></script>
 <script>
 
 	$(document).ready(function() {
@@ -41,65 +44,17 @@
 </style>
 </head>
 <body onload="checkUser()">
-  <select id="start" onchange="addEvent()">
-    <option value="0">12am</option>
-    <option value="1">1am</option>
-    <option value="2">2am</option>
-    <option value="3">3am</option>
-    <option value="4">4am</option>
-    <option value="5">5am</option>
-    <option value="6">6am</option>
-    <option value="7">7am</option>
-    <option value="8">8am</option>
-    <option value="9">9am</option>
-    <option value="10">10am</option>
-    <option value="11">11am</option>
-    <option value="12">12pm</option>
-    <option value="13">1pm</option>
-    <option value="14">2pm</option>
-    <option value="15">3pm</option>
-    <option value="16">4pm</option>
-    <option value="17">5pm</option>
-    <option value="18">6pm</option>
-    <option value="19">7pm</option>
-    <option value="20">8pm</option>
-    <option value="21">9pm</option>
-    <option value="22">10pm</option>
-    <option value="23">11pm</option>
-  </select>
-  
-  <select id="end" onchange="addEvent()">
-    <option value="1">1am</option>
-    <option value="2">2am</option>
-    <option value="3">3am</option>
-    <option value="4">4am</option>
-    <option value="5">5am</option>
-    <option value="6">6am</option>
-    <option value="7">7am</option>
-    <option value="8">8am</option>
-    <option value="9">9am</option>
-    <option value="10">10am</option>
-    <option value="11">11am</option>
-    <option value="12">12pm</option>
-    <option value="13">1pm</option>
-    <option value="14">2pm</option>
-    <option value="15">3pm</option>
-    <option value="16">4pm</option>
-    <option value="17">5pm</option>
-    <option value="18">6pm</option>
-    <option value="19">7pm</option>
-    <option value="20">8pm</option>
-    <option value="21">9pm</option>
-    <option value="22">10pm</option>
-    <option value="23">11pm</option>
-    <option value="24">12am</option>
-  </select>
-
+  <input type="text" id="timepicker-12-hr" name="timepicker-12-hr" class="timepicker-12-hr">
+  <br>
   <div id='totalhours'>Total: 0</div>
 
 	<div id='calendar'></div>
 
-<script>
+<script type="text/javascript">
+  var twelveHour = $('.timepicker-12-hr').wickedpicker();
+  $('.time').text('//JS Console: ' + twelveHour.wickedpicker('time'));
+  $('.timepicker-24-hr').wickedpicker({twentyFour: true});
+  $('.timepicker-12-hr-clearable').wickedpicker({clearable: true});
   function addEvent() {
       var startdrop = document.getElementById("start");
       var starthour = Number(startdrop.options[startdrop.selectedIndex].value);
@@ -127,14 +82,14 @@
       $('#calendar').fullCalendar('removeEvents') //Hide all events
       $('#calendar').fullCalendar( 'renderEvent', newEvent );
   }
-
+  
+  var user;
+  
   function checkUser() {
-    var user=getUser();
-    window.alert(user);
+    user=getUser();
     if ( user == "" ) {
       user = createUser();
     }
-    window.alert(user);
   }
 
   function createUser() {
@@ -168,6 +123,5 @@
     return ""
   }
 </script>
-
 </body>
 </html>

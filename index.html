@@ -1,127 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset='utf-8' />
-<link href='./bower_components/fullcalendar/dist/fullcalendar.min.css' rel='stylesheet' />
-<link href='./bower_components/fullcalendar/dist/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-<link href='./bower_components/wickedpicker/dist/wickedpicker.min.css' rel='stylesheet' media='print' />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css" />
 
+		<link rel="stylesheet" href="./bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css"/>
+		<link rel="stylesheet" href="./bower_components/bootstrap-material-design/dist/css/ripples.min.css"/>
 
-<script src='./bower_components/moment/min/moment.min.js'></script>
-<script src='./bower_components/jquery/dist/jquery.min.js'></script>
-<script src='./bower_components/fullcalendar/dist/fullcalendar.min.js'></script>
-<script type="text/javascript" src="./bower_components/wickedpicker/dist/wickedpicker.min.js"></script>
-<script>
+		<link rel="stylesheet" href="./bower_components/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" />
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-	$(document).ready(function() {
-
-		$('#calendar').fullCalendar({
-			editable: false,
-			handleWindowResize: true,
-			defaultView: 'agendaWeek',
-			displayEventTime: false,
-			allDaySlot: false,
-			firstDay: 1
-		});
+		<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
+    <script src="./bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+		<script type="text/javascript" src="https://rawgit.com/FezVrasta/bootstrap-material-design/master/dist/js/material.min.js"></script>
+		<script type="text/javascript" src="./bower_components/moment/min/moment-with-locales.min.js"></script>
+		<script type="text/javascript" src="./bower_components/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 		
-	});
-
-</script>
-<style>
-
-	body {
-		margin: 40px 10px;
-		padding: 0;
-		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		font-size: 14px;
-	}
-
-	#calendar {
-		max-width: 900px;
-		margin: 0 auto;
-	}
-
-</style>
+		<link rel="import" href='./fullcalendar.html' />
+		
+		<link href='./style.css' rel='stylesheet' media='print' />
+    <script src="./script.js"></script>
 </head>
 <body onload="checkUser()">
-  <input type="text" id="timepicker-12-hr" name="timepicker-12-hr" class="timepicker-12-hr">
-  <br>
-  <div id='totalhours'>Total: 0</div>
-
-	<div id='calendar'></div>
-
-<script type="text/javascript">
-  var twelveHour = $('.timepicker-12-hr').wickedpicker();
-  $('.time').text('//JS Console: ' + twelveHour.wickedpicker('time'));
-  $('.timepicker-24-hr').wickedpicker({twentyFour: true});
-  $('.timepicker-12-hr-clearable').wickedpicker({clearable: true});
-  function addEvent() {
-      var startdrop = document.getElementById("start");
-      var starthour = Number(startdrop.options[startdrop.selectedIndex].value);
-      
-      var enddrop = document.getElementById("end");
-      var endhour = Number(enddrop.options[enddrop.selectedIndex].value);
-      
-      if (starthour > endhour) {
-        console.log(starthour + " " + endhour);
-        endhour = starthour + 1;
-        enddrop.value = endhour;
-      }
-      
-      var total = endhour - starthour;
-      document.getElementById("totalhours").innerHTML = "Total: " + total;
-      
-      var newEvent = new Object();
-
-      newEvent.title = "Avilable hours";
-      newEvent.start = new Date();
-      newEvent.end = new Date();
-      newEvent.start.setHours(starthour,0,0,0);
-      newEvent.end.setHours(endhour,0,0,0);
-      newEvent.allDay = false;
-      $('#calendar').fullCalendar('removeEvents') //Hide all events
-      $('#calendar').fullCalendar( 'renderEvent', newEvent );
-  }
-  
-  var user;
-  
-  function checkUser() {
-    user=getUser();
-    if ( user == "" ) {
-      user = createUser();
-    }
-  }
-
-  function createUser() {
-    var randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-    var uniqid = randLetter + Date.now();
-    if(document.cookie != document.cookie) {
-      index = document.cookie.indexOf(cookie_name);
-    } else {
-      index = -1;
-    }
-    if (index == -1) {
-      document.cookie="user"+"="+uniqid+"; expires=Monday, 04-Apr-2099 05:00:00 GMT";
-    }
-    return uniqid;
-  }
-
-  function getUser() {
-    var user_get = "";
-    if(document.cookie) {
-      index = document.cookie.indexOf("user");
-      if (index != -1) {
-        namestart = (document.cookie.indexOf("=", index) + 1);
-        nameend = document.cookie.indexOf(";", index);
-        if (nameend == -1) {
-          nameend = document.cookie.length;
-        }
-        user_get = document.cookie.substring(namestart, nameend);
-        return user_get;
-      }
-    }
-    return ""
-  }
-</script>
+  <div class="container well">
+    <div class="form-control-wrapper">
+		  <input type="text" id="time-mon-start" class="form-control floating-label" placeholder="Time">
+		  <input type="text" id="time-mon-end" class="form-control floating-label" placeholder="Time">
+	  </div>
+    <br>
+    <p id='totalhours'>Total: 0</p>
+  </div>
+	<div class="container well">
+	  <div id='calendar'></div>
+	</div>
 </body>
 </html>

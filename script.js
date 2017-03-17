@@ -28,6 +28,9 @@ $(document).ready(function() {
 	  shortTime: true,
 	  format: 'h:mm a'
   });
+  $("#time-end-start").change(function(){
+    
+  });
   //Tue
 	$('#time-tue-start').bootstrapMaterialDatePicker
   ({

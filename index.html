@@ -17,15 +17,17 @@
     <script src="./script.js"></script>
 </head>
 <body onload="checkUser()">
-  <div class="container well" class="day">
+  <div class="container well" class="days">
     <div class="container well" id="mon">
       <div class="form-control-wrapper">
+        <h2> Monday </h2>
 	      <input type="text" id="time-mon-start" class="form-control floating-label" placeholder="Monday Start">
 	      <input type="text" id="time-mon-end" class="form-control floating-label" placeholder="Monday End">
       </div>
     </div>
     <div class="container well" id="tue">
       <div class="form-control-wrapper">
+        <h2> Tuesday </h2>
 	      <input type="text" id="time-tue-start" class="form-control floating-label" placeholder="Tuesday Start">
 	      <input type="text" id="time-tue-end" class="form-control floating-label" placeholder="Tuesday End">
       </div>
@@ -36,7 +38,9 @@
     </div>
   </div>
 	<div class="container well">
-	  <div id='calendar'></div>
+	  <div class="form-control-wrapper">
+	    <div id='calendar'></div>
+	  </div>
 	</div>
 </body>
 </html>

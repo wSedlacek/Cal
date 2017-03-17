@@ -16,12 +16,6 @@ body {
 	margin: 10px 20px;
 }
 
-.day {
-    -webkit-columns: 100px 3; /* Chrome, Safari, Opera */
-    -moz-columns: 100px 3; /* Firefox */
-    columns: 100px 3;
-}
-
 @media(max-width: 300px)
 {
 	.well { margin : 0}

@@ -1,16 +1,3 @@
-//jquery
-$(document).ready(function() {
-	$.material.init()
-});
-
-$.getScript( "./imports/cal-hours/cal-hours.js" )
-  .done(function( script, textStatus ) {
-    console.log( textStatus );
-  })
-  .fail(function( jqxhr, settings, exception ) {
-    $( "div.log" ).text( "Triggered ajaxError handler." );
-});
-
 function pendHours(elementId) {
 	var elementArr = elementId.split("-",3);
 	var elementStartId;
@@ -59,6 +46,18 @@ function pendHours(elementId) {
 	totalHours(endHour - startHour);
 }
 
+function addCalEvent(startHour, startMin, endHour, endMin) {
+    var newEvent = new Object();
+
+    newEvent.title = "Pending Changes";
+    newEvent.start = new Date();
+    newEvent.end = new Date();
+    newEvent.start.setHours(startHour,startMin,0,0);
+    newEvent.end.setHours(endHour,endMin,0,0);
+    newEvent.allDay = false;
+    $('#calendar').fullCalendar('removeEvents') //Hide all events
+    $('#calendar').fullCalendar( 'renderEvent', newEvent );
+}
 
 
 function totalHours(totalPen) {

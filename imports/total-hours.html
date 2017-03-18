@@ -1,0 +1,48 @@
+<template id="total-temp">
+  <style>
+    div.totals {
+      width:300px;
+      height:175px;
+      margin-right:10px;
+      margin-bottom: 10px;
+      float: left;
+    }
+
+    div.total {
+      margin-top: 5px;
+      margin-right:5px;
+      margin-left:5px;
+      margin-bottom:5px;
+      float: left;
+    }
+  </style>
+  <div class="container well totals">
+    <div class="form-control-wrapper total">
+      <h3> This week </h3>
+      <h id='this-hours-cur'>Current: 0</h>
+      <br>
+      <h id='this-hours-pen'>Pending: 0</h>
+    </div>
+  </div>
+</template>
+
+<script>
+  (function() {
+    var importDoc = document.currentScript.ownerDocument;
+    var proto = Object.create(HTMLElement.prototype, {
+      createdCallback: {
+        value: function() {
+          var t = importDoc.querySelector('#total-temp');
+          var clone = document.importNode(t.content, true);
+          var h3 = clone.querySelectorAll('h3');
+          h3[0].innerHTML= this.getAttribute('name');
+          var h = clone.querySelectorAll('input');
+          h[0].id = this.getAttribute('id') + "-hours-cur";
+          h[1].id = this.getAttribute('id') + "-hours-pen";
+          this.appendChild(clone);
+        }
+      }
+    });
+    document.registerElement('total-hours', {prototype: proto});
+  })();
+</script>

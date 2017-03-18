@@ -52,8 +52,8 @@ function addCalEvent(startHour, startMin, endHour, endMin, shiftWeekDay) {
     shift.title = "Pending Changes";
     shift.start = new Date();
     shift.end = new Date();
-		var curDay = Number((String(newEvent.end).split(" ", 4))[2]);
-		var curWeekDay = (String(newEvent.end).split(" ", 2))[0];
+		var curDay = Number((String(shift.end).split(" ", 4))[2]);
+		var curWeekDay = (String(shift.end).split(" ", 2))[0];
 		shift.day = generateStartDay(curDay, curWeekDay, shiftWeekDay);
 		shift.start.setDate(shift.day);
 		shift.end.setDate(shift.day);
@@ -85,12 +85,7 @@ function generateStartDay(curDay, curWeekDay, shiftWeekDay) {
 					shiftDay = curDay + 4;
 					break;
 				case "sat":
-					shiftDay = curDay + 5;
-					break;
-				case "sun":
-					shiftDay = curDay + 6;
-					break;
-			}
+					shiftDay = curDay + 5;shiftDay
 			break;
 		case "Tue":
 			switch (shiftWeekDay) {

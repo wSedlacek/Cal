@@ -91,8 +91,8 @@ $(document).ready(function() {
 	});
 
 	$('input.timepicker').change(function(){
-		var contentPanelId = jQuery(this).attr("id");
-    alert(contentPanelId);
+		var thisId = jQuery(this).attr("id");
+    addEventTest(thisID);
 	});
 
 	$("#time-mon-start").change(function(){
@@ -101,6 +101,10 @@ $(document).ready(function() {
 
 	$.material.init()
 });
+
+function addEvent(thatId) {
+	alert(thatId);
+}
 
 function addEvent() {
     var startdrop = document.getElementById("#time-mon-start");

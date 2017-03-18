@@ -1,10 +1,20 @@
-function pendHours(elementId) {
+function pendShift(elementId) {
+	shift = pharseShift();
+	addPendingShift(shift);
+	totalPendingHours(shift.endHour - shift.startHour);
+}
+
+function pharseShift(elementId) {
 	var elementArr = elementId.split("-",3);
 	var elementStartId;
 	var elementStartArr;
 	var elementEndId;
 	var elementEndArr;
+
+	var type = elementArr[0];
+	var weekDay = elementArr[1];
 	var startOrEnd = elementArr[2];
+
 	if (startOrEnd == "end" ) {
 		elementStartId = elementArr[0] + "-" + elementArr[1] + "-start";
 		elementStartArr = elementStartId.split("-",3);
@@ -16,7 +26,7 @@ function pendHours(elementId) {
 		elementEndId = elementArr[0] + "-" + elementArr[1] + "-end";
 		elementEndArr = elementEndId.split("-",3);
 	}
-	var shiftWeekDay = elementArr[1];
+
 	var startTime = (document.getElementById(elementStartId)).value;
 	var endTime = (document.getElementById(elementEndId)).value;
 
@@ -46,32 +56,42 @@ function pendHours(elementId) {
 		endHour = startHour + 1;
 	}
 
-	addPendingShift(startHour, startMin, endHour, endMin, shiftWeekDay);
-	totalPendingHours(endHour - startHour);
-}
+	var curDate = new Date();
+	var curDay = Number((String(curDate).split(" ", 4))[2]);
+	var curWeekDay = (String(curDate).split(" ", 2))[0];
+	var day =  generateStartDay(curDay, curWeekDay, weekDay);
 
-function addPendingShift(startHour, startMin, endHour, endMin, shiftWeekDay) {
 	var shift = new Object();
+	shift.startHour = startHour;
+	shift.endHour = endHour;
+	shift.startMin = startMin;
+	shift.endMin = endMin;
+	shift.weekDay = weekDay;
+	shift.day = day;
+	shift.type = type;
 
-	shift.title = "Pending Changes";
-	shift.id = shiftWeekDay + "-pending";
-	shift.start = new Date();
-	shift.end = new Date();
-	var curDay = Number((String(shift.end).split(" ", 4))[2]);
-	var curWeekDay = (String(shift.end).split(" ", 2))[0];
-	shift.day = generateStartDay(curDay, curWeekDay, shiftWeekDay);
-	shift.start.setDate(shift.day);
-	shift.end.setDate(shift.day);
-	shift.start.setHours(startHour,startMin,0,0);
-	shift.end.setHours(endHour,endMin,0,0);
-	shift.allDay = false;
-	addCalEvent(shift);
+	return shift;
+}
+
+function addPendingShift(shift) {
+	var shiftEvent = new Object();
+
+	shiftEvent.title = "Pending Changes";
+	shiftEvent.id = shift.weekDay + "-pending";
+	shiftEvent.start = new Date();
+	shiftEvent.end = new Date();
+	shiftEvent.start.setDate(shift.day);
+	shiftEvent.end.setDate(shift.day);
+	shiftEvent.start.setHours(shift.startHour,shift.startMin,0,0);
+	shiftEvent.end.setHours(shift.endHour,shift.endMin,0,0);
+	shiftEvent.allDay = false;
+	addCalEvent(shiftEvent);
 }
 
 
-function addCalEvent(shift) {
-    $('#calendar').fullCalendar('removeEvents', shift.id);
-    $('#calendar').fullCalendar( 'renderEvent', shift );
+function addCalEvent(shiftEvent) {
+    $('#calendar').fullCalendar('removeEvents', shiftEvent.id);
+    $('#calendar').fullCalendar( 'renderEvent', shiftEvent );
 }
 
 function generateStartDay(curDay, curWeekDay, shiftWeekDay) {

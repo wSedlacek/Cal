@@ -1,8 +1,8 @@
-<link href='../bower_components/fullcalendar/dist/fullcalendar.min.css' rel='stylesheet' />
-<link href='../bower_components/fullcalendar/dist/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<link href='../../bower_components/fullcalendar/dist/fullcalendar.min.css' rel='stylesheet' />
+<link href='../../bower_components/fullcalendar/dist/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 
-<script src='../bower_components/moment/min/moment.min.js'></script>
-<script src='../bower_components/fullcalendar/dist/fullcalendar.min.js'></script>
+<script src='../../bower_components/moment/min/moment.min.js'></script>
+<script src='../../bower_components/fullcalendar/dist/fullcalendar.min.js'></script>
 
 <template id="cal-temp">
   <style>
@@ -41,18 +41,5 @@
     		firstDay: 1
     	});
     });
-
-    function addCalEvent(startHour, startMin, endHour, endMin) {
-        var newEvent = new Object();
-
-        newEvent.title = "Pending Changes";
-        newEvent.start = new Date();
-        newEvent.end = new Date();
-        newEvent.start.setHours(startHour,startMin,0,0);
-        newEvent.end.setHours(endHour,endMin,0,0);
-        newEvent.allDay = false;
-        $('#calendar').fullCalendar('removeEvents') //Hide all events
-        $('#calendar').fullCalendar( 'renderEvent', newEvent );
-    }
   })();
 </script>

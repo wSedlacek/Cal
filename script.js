@@ -49,7 +49,8 @@ function pendHours(elementId) {
 function addPendingShift(startHour, startMin, endHour, endMin, shiftWeekDay) {
 	var shift = new Object();
 
-	shift.title = "Pending Changes";
+	shift.title = "Pending Changes - " + shiftWeekDay;;
+	shift.id = shiftWeekDay;
 	shift.start = new Date();
 	shift.end = new Date();
 	var curDay = Number((String(shift.end).split(" ", 4))[2]);
@@ -65,7 +66,7 @@ function addPendingShift(startHour, startMin, endHour, endMin, shiftWeekDay) {
 
 
 function addCalEvent(shift) {
-    //$('#calendar').fullCalendar('removeEvents') //Hide all events
+    $('#calendar').fullCalendar('removeEvents', shift.id) //Hide all events
     $('#calendar').fullCalendar( 'renderEvent', shift );
 }
 

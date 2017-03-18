@@ -287,7 +287,7 @@ function totalPendingHours(totalPen) {
 }
 
 function showHideOvr(weekDayOvr) {
-	var enabled = document.getElementById("chk-"+ weekDayOvr).value;
+	var enabled = document.getElementById("chk-"+ weekDayOvr).checked;
 	var ovrday = document.getElementById("ovr-" + weekDayOvr);
 	if (enabled) {
 		ovrday.style.display = "block";

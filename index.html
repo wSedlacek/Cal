@@ -46,6 +46,8 @@
 <body onload="checkUser()">
 
 	<template id="day-temp">
+		<link rel="stylesheet" href="./bower_components/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" />
+		<script src="./bower_components/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 	  <style>
 	    div.days {
 	      width:151px;
@@ -94,6 +96,16 @@
 	      }
 	    });
 	    document.registerElement('day-timepicker', {prototype: proto});
+			$('input.timepicker').bootstrapMaterialDatePicker ({
+				date: false,
+				shortTime: true,
+				format: 'h:mm a'
+			});
+
+			$('input.timepicker').change(function(){
+				var thisId = jQuery(this).attr("id");
+				pendHours(thisId);
+			});
 	  })();
 	</script>
 

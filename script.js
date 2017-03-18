@@ -95,18 +95,33 @@ $(document).ready(function() {
     addEventTest(thisId);
 	});
 
-	$("#time-mon-start").change(function(){
-
-	});
-
 	$.material.init()
 });
 
-function addEventTest(thatId) {
-	var elementId = thatId.split("-",3);;
-	var time = document.getElementById(thatId);
-	var day = elementId[1];
-	alert(day);
+function addEventTest(elementId) {
+	var elementArr = elementId.split("-",3);
+	var elementStartId;
+	var elementStartArr;
+	var elementEndId;
+	var elementEndArr;
+
+	var startOrEnd = elementArr[2];
+	if (startOrEnd == "end" ) {
+		elementStartId = elementArr[1] + "-" + day + "start";
+		elementStartArr = elementStartId.split("-",3);
+		elementEndId = elementId;
+		elementEndArr = elementArr;
+	} else {
+		elementStartId = elementId;
+		elementStartArr = elementArr;
+		elementEndId = elementArr[1] + "-" + day + "end";
+		elementEndArr = elementEndId.split("-",3);
+	}
+	var day = elementArr[1];
+	var startTime = (document.getElementById(elementStartId)).value;
+	var endTime = (document.getElementById(elementEndId)).value;
+
+	alert(startTime + " - " + endTime);
 }
 
 function addEvent() {

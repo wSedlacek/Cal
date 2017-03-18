@@ -42,25 +42,30 @@ function pendHours(elementId) {
 		endHour = startHour + 1;
 	}
 
-	addCalEvent(startHour, startMin, endHour, endMin, shiftWeekDay);
-	totalHours(endHour - startHour);
+	addPendingShift(startHour, startMin, endHour, endMin, shiftWeekDay);
+	totalPendingHours(endHour - startHour);
 }
 
-function addCalEvent(startHour, startMin, endHour, endMin, shiftWeekDay) {
-    var shift = new Object();
+function addPendingShift() {
+	var shift = new Object();
 
-    shift.title = "Pending Changes";
-    shift.start = new Date();
-    shift.end = new Date();
-		var curDay = Number((String(shift.end).split(" ", 4))[2]);
-		var curWeekDay = (String(shift.end).split(" ", 2))[0];
-		shift.day = generateStartDay(curDay, curWeekDay, shiftWeekDay);
-		shift.start.setDate(shift.day);
-		shift.end.setDate(shift.day);
-    shift.start.setHours(startHour,startMin,0,0);
-    shift.end.setHours(endHour,endMin,0,0);
-    shift.allDay = false;
-    $('#calendar').fullCalendar('removeEvents') //Hide all events
+	shift.title = "Pending Changes";
+	shift.start = new Date();
+	shift.end = new Date();
+	var curDay = Number((String(shift.end).split(" ", 4))[2]);
+	var curWeekDay = (String(shift.end).split(" ", 2))[0];
+	shift.day = generateStartDay(curDay, curWeekDay, shiftWeekDay);
+	shift.start.setDate(shift.day);
+	shift.end.setDate(shift.day);
+	shift.start.setHours(startHour,startMin,0,0);
+	shift.end.setHours(endHour,endMin,0,0);
+	shift.allDay = false;
+	addCalEvent(shift);
+}
+
+
+function addCalEvent(shift) {
+    //$('#calendar').fullCalendar('removeEvents') //Hide all events
     $('#calendar').fullCalendar( 'renderEvent', shift );
 }
 
@@ -235,7 +240,10 @@ function generateStartDay(curDay, curWeekDay, shiftWeekDay) {
 	return shiftDay;
 }
 
+function totalCurrentHours(totalPen) {
+	document.getElementById("def-hours-cur").innerHTML = "Current: " + totalPen;
+}
 
-function totalHours(totalPen) {
+function totalPendingHours(totalPen) {
 	document.getElementById("def-hours-pen").innerHTML = "Pending: " + totalPen;
 }

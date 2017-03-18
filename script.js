@@ -46,7 +46,7 @@ function pendHours(elementId) {
 	totalPendingHours(endHour - startHour);
 }
 
-function addPendingShift() {
+function addPendingShift(startHour, startMin, endHour, endMin, shiftWeekDay) {
 	var shift = new Object();
 
 	shift.title = "Pending Changes";

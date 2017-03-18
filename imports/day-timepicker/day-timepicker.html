@@ -48,17 +48,18 @@
           this.appendChild(clone);
         }
       }
-      $('input.timepicker').bootstrapMaterialDatePicker ({
-        date: false,
-        shortTime: true,
-        format: 'h:mm a'
-      });
-
-      $('input.timepicker').change(function(){
-        var thisId = jQuery(this).attr("id");
-        pendHours(thisId);
-      });
     });
     document.registerElement('day-timepicker', {prototype: proto});
+
+    $('input.timepicker').bootstrapMaterialDatePicker ({
+      date: false,
+      shortTime: true,
+      format: 'h:mm a'
+    });
+
+    $('input.timepicker').change(function(){
+      var thisId = jQuery(this).attr("id");
+      pendHours(thisId);
+    });
   })();
 </script>

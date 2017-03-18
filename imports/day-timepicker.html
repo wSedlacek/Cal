@@ -34,7 +34,7 @@
 
 <script>
   (function() {
-    var importDoc = document.currentScript.ownerDocument; // importee
+    var importDoc = document.currentScript.ownerDocument;
     var proto = Object.create(HTMLElement.prototype, {
       createdCallback: {
         value: function() {
@@ -51,15 +51,17 @@
     });
     document.registerElement('day-timepicker', {prototype: proto});
 
-    $('input.timepicker').bootstrapMaterialDatePicker ({
-      date: false,
-      shortTime: true,
-      format: 'h:mm a'
-    });
+    importDoc.ready(function() {
+      $('input.timepicker').bootstrapMaterialDatePicker ({
+        date: false,
+        shortTime: true,
+        format: 'h:mm a'
+      });
 
-    $('input.timepicker').change(function(){
-      var thisId = jQuery(this).attr("id");
-      pendHours(thisId);
+      $('input.timepicker').change(function(){
+        var thisId = jQuery(this).attr("id");
+        pendHours(thisId);
+      });
     });
   })();
 </script>

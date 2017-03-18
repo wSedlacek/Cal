@@ -1,5 +1,5 @@
 <template id="user-temp">
-  <h></h>
+  <h>Hello User: ERROR</h>
 </template>
 
 <script>
@@ -11,7 +11,7 @@
           var t = importDoc.querySelector('#user-temp');
           var clone = document.importNode(t.content, true);
           var h = clone.querySelectorAll('h');
-          h[0].innerHTML = checkUser();
+          h[0].innerHTML = "Hello User: " + checkUser();
           this.appendChild(clone);
         }
       }

@@ -104,20 +104,17 @@ function addEventTest(elementId) {
 	var elementStartArr;
 	var elementEndId;
 	var elementEndArr;
-	alert(elementArr[0]);
-	alert(elementArr[1]);
-	alert(elementArr[2]);
 	var startOrEnd = elementArr[2];
 	if (startOrEnd == "end" ) {
 		alert(elementArr[1] + "-" + day + "-start")
-		elementStartId = elementArr[1] + "-" + day + "-start";
+		elementStartId = elementArr[1] + "-" + elementArr[1] + "-start";
 		elementStartArr = elementStartId.split("-",3);
 		elementEndId = elementId;
 		elementEndArr = elementArr;
 	} else {
 		elementStartId = elementId;
 		elementStartArr = elementArr;
-		alert(elementArr[1] + "-" + day + "-end")
+		alert(elementArr[0] + "-" + elementArr[1] + "-end")
 		elementEndId = elementArr[1] + "-" + day + "-end";
 		elementEndArr = elementEndId.split("-",3);
 	}

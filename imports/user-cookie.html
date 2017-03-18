@@ -49,8 +49,8 @@
         if (index != -1) {
           idstart = (document.cookie.indexOf("=", index) + 1);
           idend = document.cookie.indexOf(";", index);
-          if (nameend == -1) {
-            nameend = document.cookie.length;
+          if (idend == -1) {
+            idend = document.cookie.length;
           }
           uniqid = document.cookie.substring(idstart, idend);
           return uniqid;

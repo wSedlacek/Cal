@@ -22,8 +22,8 @@
           var t = importDoc.querySelector('#ovr-temp');
           var clone = document.importNode(t.content, true);
           var input = clone.querySelectorAll('input');
-          input[0].id = "showHideOvr('" + this.getAttribute('day') + "')";
-          input[0].onchange = "chk-" + this.getAttribute('day');
+          input[0].id = "chk-" + this.getAttribute('day');
+          input[0].onChange = "showHideOvr('" + this.getAttribute('day') + "')";
           var label = clone.querySelectorAll('label');
           label[0].innerHTML = this.getAttribute('label');
           this.appendChild(clone);

@@ -1,0 +1,62 @@
+<template id="user-temp">
+  <h></h>
+</template>
+
+<script>
+  (function() {
+    var importDoc = document.currentScript.ownerDocument;
+    var proto = Object.create(HTMLElement.prototype, {
+      createdCallback: {
+        value: function() {
+          var t = importDoc.querySelector('#user-temp');
+          var clone = document.importNode(t.content, true);
+          var h = clone.querySelectorAll('h');
+          h[0].innerHTML = checkUser();
+          this.appendChild(clone);
+        }
+      }
+    });
+    document.registerElement('user-cookie', {prototype: proto});
+
+    var user;
+
+    function checkUser() {
+      var user = getUser();
+      if ( user == "" ) {
+        user = createUser();
+      }
+      return user;
+    }
+
+    function createUser() {
+      var randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+      var uniqid = randLetter + Date.now();
+      if(document.cookie != document.cookie) {
+        index = document.cookie.indexOf(cookie_name);
+      } else {
+        index = -1;
+      }
+      if (index == -1) {
+        document.cookie="user"+"="+uniqid+"; expires=Monday, 04-Apr-2099 05:00:00 GMT";
+      }
+      return uniqid;
+    }
+
+    function getUser() {
+      var uniqid = "";
+      if(document.cookie) {
+        index = document.cookie.indexOf("user");
+        if (index != -1) {
+          idstart = (document.cookie.indexOf("=", index) + 1);
+          idend = document.cookie.indexOf(";", index);
+          if (nameend == -1) {
+            nameend = document.cookie.length;
+          }
+          uniqid = document.cookie.substring(idstart, idend);
+          return uniqid;
+        }
+      }
+      return uniqid;
+    }
+  })();
+</script>

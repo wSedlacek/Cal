@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<script src="./bower_components/jquery/dist/jquery.min.js"></script>
   <link rel="import" href='./imports/fonts.html' />
 	<link rel="import" href='./imports/cal-hours.html' />
-	<link rel="import" href='./imports/total-hours.html' />
 	<link rel="import" href='./imports/day-timepicker.html' />
+	<link rel="import" href='./imports/total-hours.html' />
+	<link rel="import" href='./imports/user-cookie.html' />
   <link rel="import" href='./imports/material.html' />
 
+	<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="./script.js"></script>
+
 	<style>
-		@media(max-width: 300px)
-		{
+		@media(max-width: 300px) {
 		  .well { margin : 0}
 		}
 	</style>
-	<script src="./script.js"></script>
 </head>
-<body onload="checkUser()">
+
+<body>
   <br>
+	<user-cookie></user-cookie>
+	<br>
   <div class="container well">
     <h1> Default Availity </h1>
     <day-timepicker name="Mon" id="mon" ></day-timepicker>
@@ -41,4 +46,5 @@
 		<total-hours name="This Week" id="this"></total-hours>
   </div>
 </body>
+
 </html>

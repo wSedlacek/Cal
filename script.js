@@ -122,8 +122,8 @@ function addEventTest(elementId) {
 
 	var startAmOrPm = (startTime.split(" ", 2))[1];
 	startTime = (startTime.split(" ", 2))[0];
-	var startHour = (startTime.split(":", 2))[0];
-	var startMin = (startTime.split(":", 2))[1];
+	var startHour = Number((startTime.split(":", 2))[0]);
+	var startMin = Number((startTime.split(":", 2))[1]);
 	if (startAmOrPm == "pm") {
 		startHour +=12;
 		startTime = startHour + ":" + startMin
@@ -131,8 +131,8 @@ function addEventTest(elementId) {
 
 	var endAmOrPm = (endTime.split(" ", 2))[1];
 	endTime = (endTime.split(" ", 2))[0];
-	endHour = (endTime.split(":", 2))[0];
-	endMin = (endTime.split(":", 2))[1];
+	var endHour = Number((endTime.split(":", 2))[0]);
+	var endMin = Number((endTime.split(":", 2))[1]);
 	if (endAmOrPm == "pm") {
 		endHour +=12;
 		endTime = startHour + ":" + startMin

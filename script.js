@@ -294,7 +294,7 @@ function showHideOvr(weekDayOvr) {
 	var enabled = document.getElementById("chk-"+ weekDayOvr).checked;
 	var ovrday = document.getElementById("ovr-" + weekDayOvr);
 	if (enabled) {
-		ovrday.style.display = "block";
+		ovrday.style.display = "inline-block";
 	} else {
 		ovrday.style.display = "none";
 	}

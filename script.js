@@ -278,7 +278,7 @@ function generateStartDay(curDay, curWeekDay, shiftWeekDay) {
 	return shiftDay;
 }
 
-function userLogout(totalPen) {
+function userLogout() {
 	document.cookie = "user" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 	location.reload();
 }

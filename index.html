@@ -18,6 +18,9 @@
 	<script src="./script.js"></script>
 
 	<style>
+		div.centered {
+			text-align: center
+		}
 		@media(max-width: 300px) {
 		  .well { margin : 0}
 		}
@@ -32,13 +35,15 @@
 	<br>
   <div class="container well">
     <h1> Default Availity </h1>
-    <day-timepicker name="Mon" id="def-mon"></day-timepicker>
-		<day-timepicker name="Tue" id="def-tue"></day-timepicker>
-		<day-timepicker name="Wed" id="def-wed"></day-timepicker>
-		<day-timepicker name="Thr" id="def-thr"></day-timepicker>
-		<day-timepicker name="Fri" id="def-fri"></day-timepicker>
-		<day-timepicker name="Sat" id="def-sat"></day-timepicker>
-		<day-timepicker name="Sun" id="def-sun"></day-timepicker>
+		<div class="centered">
+	    <day-timepicker name="Mon" id="def-mon"></day-timepicker>
+			<day-timepicker name="Tue" id="def-tue"></day-timepicker>
+			<day-timepicker name="Wed" id="def-wed"></day-timepicker>
+			<day-timepicker name="Thr" id="def-thr"></day-timepicker>
+			<day-timepicker name="Fri" id="def-fri"></day-timepicker>
+			<day-timepicker name="Sat" id="def-sat"></day-timepicker>
+			<day-timepicker name="Sun" id="def-sun"></day-timepicker>
+			</div>
 		<div id="submit-def" style="clear:both">
 			<br>
 			<button style="float:right" type="button" class="btn btn-primary">Submit</button>
@@ -57,13 +62,15 @@
 		<override-checkbox label="Sat" day="sat"></override-checkbox>
 		<override-checkbox label="Sun" day="sun"></override-checkbox>
 		<div style="clear: both;"> <br style="clear: both;"> </div>
-    <day-timepicker style="display:none" name="Mon" id="ovr-mon"></day-timepicker>
-		<day-timepicker style="display:none" name="Tue" id="ovr-tue"></day-timepicker>
-		<day-timepicker style="display:none" name="Wed" id="ovr-wed"></day-timepicker>
-		<day-timepicker style="display:none" name="Thr" id="ovr-thr"></day-timepicker>
-		<day-timepicker style="display:none" name="Fri" id="ovr-fri"></day-timepicker>
-		<day-timepicker style="display:none" name="Sat" id="ovr-sat"></day-timepicker>
-		<day-timepicker style="display:none" name="Sun" id="ovr-sun"></day-timepicker>
+		<div class="centered">
+	    <day-timepicker style="display:none" name="Mon" id="ovr-mon"></day-timepicker>
+			<day-timepicker style="display:none" name="Tue" id="ovr-tue"></day-timepicker>
+			<day-timepicker style="display:none" name="Wed" id="ovr-wed"></day-timepicker>
+			<day-timepicker style="display:none" name="Thr" id="ovr-thr"></day-timepicker>
+			<day-timepicker style="display:none" name="Fri" id="ovr-fri"></day-timepicker>
+			<day-timepicker style="display:none" name="Sat" id="ovr-sat"></day-timepicker>
+			<day-timepicker style="display:none" name="Sun" id="ovr-sun"></day-timepicker>
+		</div>
 		<div id="submit-ovr" style="clear:both">
 			<br>
 			<button style="float:right" type="button" class="btn btn-primary">Submit</button>

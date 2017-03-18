@@ -1,6 +1,6 @@
 //Todo:
 /*
-1. Buttons to clear days
+1. Buttons to clear days (Logic)
 2. Button to Submit schedule (Logic)
 3. SQL database to load and submit Schedule
 4. Fix the calendar making schedule disappear when switching weeks.
@@ -287,7 +287,7 @@ function totalPendingHours(totalPen) {
 }
 
 function clearTime(id) {
-	alert(id+"wants to be cleared");
+	alert(id+" wants to be cleared!");
 }
 
 function showHideOvr(weekDayOvr) {

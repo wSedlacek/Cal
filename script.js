@@ -91,7 +91,8 @@ $(document).ready(function() {
 	});
 
 	$('input.timepicker').change(function(){
-		alert("THIS WAS RUN");
+		var contentPanelId = jQuery(this).attr("id");
+    alert(contentPanelId);
 	});
 
 	$("#time-mon-start").change(function(){

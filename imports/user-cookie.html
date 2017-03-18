@@ -1,5 +1,6 @@
 <template id="user-temp">
   <h style="float:left; vertical-align: middle;">Hello User: ERROR</h>
+	<button style="float:right" type="button" class="btn btn-primary" onclick="userLogout()">Logout</button>
 </template>
 
 <script>
@@ -57,6 +58,11 @@
         }
       }
       return uniqid;
+    }
+
+    function userLogout() {
+    	document.cookie = "user" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    	location.reload();
     }
   })();
 </script>

@@ -278,11 +278,6 @@ function generateStartDay(curDay, curWeekDay, shiftWeekDay) {
 	return shiftDay;
 }
 
-function userLogout() {
-	document.cookie = "user" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-	location.reload();
-}
-
 function totalCurrentHours(totalPen) {
 	document.getElementById("def-hours-cur").innerHTML = "Current: " + totalPen;
 }

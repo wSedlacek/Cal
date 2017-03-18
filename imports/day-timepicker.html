@@ -51,7 +51,7 @@
     });
     document.registerElement('day-timepicker', {prototype: proto});
 
-    importDoc.ready(function() {
+    $(document).ready(function() {
       $('input.timepicker').bootstrapMaterialDatePicker ({
         date: false,
         shortTime: true,

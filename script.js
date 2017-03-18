@@ -1,14 +1,4 @@
 //jquery
-var weekdays = [
-	{name="Monday" abv="Mon" id="mon"},
-	{name="Tuesday" abv="Tue" id="tue"},
-	{name="Wednesday" abv="Wed" id="wed"},
-	{name="Thrusday" abv="Thr" id="thr"},
-	{name="Friday" abv="Fri" id="fri"},
-	{name="Saturday" abv="Sat" id="sat"},
-	{name="Sunday" abv="Sun" id="sun"},
-];
-
 $(document).ready(function() {
 
   //Full Calendar

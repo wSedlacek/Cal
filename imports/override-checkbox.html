@@ -24,8 +24,9 @@
           var label = clone.querySelectorAll('label');
           label[0].innerHTML = "<input id=\"chk-\" type=\"checkbox\" onchange=\"showHideOvr('')\"> " + this.getAttribute('label');
           var input = clone.querySelectorAll('input');
-          input[0].id = "chk-" + this.getAttribute('day');
-          input[0].onchange = function(){showHideOvr(this.getAttribute('day'));};
+          day = this.getAttribute('day');
+          input[0].id = "chk-" + day
+          input[0].onchange = function(){showHideOvr(day);};
           this.appendChild(clone);
         }
       }

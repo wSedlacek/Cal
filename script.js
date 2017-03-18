@@ -135,7 +135,7 @@ function addEventTest(elementId) {
 	var endMin = Number((endTime.split(":", 2))[1]);
 	if (endAmOrPm == "pm") {
 		endHour +=12;
-		endTime = startHour + ":" + startMin
+		endTime = endHour + ":" + endMin
 	}
 
 

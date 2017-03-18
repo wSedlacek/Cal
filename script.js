@@ -52,6 +52,7 @@ function addCalEvent(startHour, startMin, endHour, endMin, day) {
     newEvent.title = "Pending Changes";
     newEvent.start = new Date();
     newEvent.end = new Date();
+		alert(newEvent.start);
 		var curWeekDay = (String(newEvent.end).split(" ", 2))[0];
 		var curDay = Number((String(newEvent.end).split(" ", 4))[2]);
 		var startDay;

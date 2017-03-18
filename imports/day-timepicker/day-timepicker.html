@@ -31,7 +31,7 @@
   (function() {
     var importDoc = document.currentScript.ownerDocument; // importee
 
-    // Define and register <day>
+    // Define and register <day-timepicker>
     // that uses Shadow DOM and a template.
     var proto2 = Object.create(HTMLElement.prototype);
 
@@ -52,7 +52,7 @@
       root.appendChild(clone);
     };
 
-    document.registerElement('day', {prototype: proto2});
+    document.registerElement('day-timepicker', {prototype: proto2});
   })();
 </script>
 

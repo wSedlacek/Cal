@@ -1,6 +1,7 @@
+<link rel="import" href='./timepicker.html' />
+<link rel="import" href='../material.html' />
+
 <template id="day-temp">
-  <link rel="import" href='./timepicker.html' />
-  <link rel="import" href='../material.html' />
   <style>
     div.days {
       width:151px;
@@ -32,6 +33,20 @@
 </template>
 
 <script>
+  $(document).ready(function() {
+    $('input.timepicker').bootstrapMaterialDatePicker ({
+      date: false,
+      shortTime: true,
+      format: 'h:mm a'
+    });
+
+    $('input.timepicker').change(function(){
+      var thisId = jQuery(this).attr("id");
+      pendHours(thisId);
+    });
+    $.material.init()
+  });
+
   (function() {
     var importDoc = document.currentScript.ownerDocument; // importee
 

@@ -1,0 +1,36 @@
+<template id="ovr-temp">
+  <style>
+    div.checkbox{
+       float:left;
+       margin-top:10px;
+       margin-bottom: 10px;
+       margin-right: 20px;
+    }
+  </style>
+  <div class="checkbox" style="margin-top:10px;">
+    <input id="chk-" type="checkbox" onchange="showHideOvr("")">
+    <label> Day </label>
+  </div>
+</template>
+
+<script>
+  (function() {
+    var importDoc = document.currentScript.ownerDocument; // importee
+    var proto = Object.create(HTMLElement.prototype, {
+      createdCallback: {
+        value: function() {
+          var t = importDoc.querySelector('#ovr-temp');
+          var clone = document.importNode(t.content, true);
+          var input = clone.querySelectorAll('input');
+          input[0].id = "showHideOvr('" + this.getAttribute('day') + "')";
+          input[0].onchange = "chk-" + this.getAttribute('day');
+          var label = clone.querySelectorAll('label');
+          label[0].innerHTML = this.getAttribute('label');
+          this.appendChild(clone);
+        }
+      }
+    });
+
+    document.registerElement('override-checkbox', {prototype: proto});
+  })();
+</script>

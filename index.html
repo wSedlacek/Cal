@@ -10,6 +10,7 @@
   <link rel="import" href='./imports/fonts.html' />
 	<link rel="import" href='./imports/cal-hours.html' />
 	<link rel="import" href='./imports/day-timepicker.html' />
+		<link rel="import" href='./imports/override-checkbox.html' />
 	<link rel="import" href='./imports/total-hours.html' />
 	<link rel="import" href='./imports/user-cookie.html' />
   <link rel="import" href='./imports/material.html' />
@@ -19,12 +20,6 @@
 	<style>
 		@media(max-width: 300px) {
 		  .well { margin : 0}
-		}
-		div.checkbox{
-		 float:left;
-		 margin-top:10px;
-		 margin-bottom: 10px;
-		 margin-right: 20px;
 		}
 		#break{
 			clear:both;
@@ -57,27 +52,13 @@
 
 	<div class="container well">
     <h1> Override Selected Week </h1>
-		<div class="checkbox" style="margin-top:10px;">
-			<label> <input id="chk-mon" type="checkbox" onchange="showHideOvr('mon')"> Monday </label>
-		</div>
-		<div class="checkbox" style="margin-top:10px;">
-			<label> <input id="chk-tue" type="checkbox" onchange="showHideOvr('tue')"> Tuesday </label>
-		</div>
-		<div class="checkbox" style="margin-top:10px;">
-			<label> <input id="chk-wed" type="checkbox" onchange="showHideOvr('wed')"> Wednesday </label>
-		</div>
-		<div class="checkbox" style="margin-top:10px;">
-			<label> <input id="chk-thr" type="checkbox" onchange="showHideOvr('thr')"> Thrusday </label>
-		</div>
-		<div class="checkbox" style="margin-top:10px;">
-			<label> <input id="chk-fri" type="checkbox" onchange="showHideOvr('fri')"> Friday </label>
-		</div>
-		<div class="checkbox" style="margin-top:10px;">
-			<label> <input id="chk-sat" type="checkbox" onchange="showHideOvr('sat')"> Saturday </label>
-		</div>
-		<div class="checkbox" style="margin-top:10px;">
-			<label> <input id="chk-sun" type="checkbox" onchange="showHideOvr('sun')"> Sunday </label>
-		</div>
+		<override-checkbox name="Mon" day="mon"></override-checkbox>
+		<override-checkbox name="Tue" day="mon"></override-checkbox>
+		<override-checkbox name="Wed" day="wed"></override-checkbox>
+		<override-checkbox name="Thr" day="thr"></override-checkbox
+		<override-checkbox name="Fri" day="fir"></override-checkbox>
+		<override-checkbox name="Sat" day="sat"></override-checkbox>
+		<override-checkbox name="Sun" day="sun"></override-checkbox>
 		<div class="break">
 			<br>
 		</div>

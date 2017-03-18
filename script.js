@@ -24,6 +24,7 @@ function pendHours(elementId) {
 	startTime = (startTime.split(" ", 2))[0];
 	var startHour = Number((startTime.split(":", 2))[0]);
 	var startMin = Number((startTime.split(":", 2))[1]);
+	alert(startHour + startAmOrPm)
 	if (startAmOrPm == "pm" && startHour < 12) {
 		startHour +=12;
 		startTime = startHour + ":" + startMin

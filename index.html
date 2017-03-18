@@ -64,59 +64,20 @@ div.total {
     <script src="./script.js"></script>
 </head>
 <body onload="checkUser()">
+
   <br>
   <div class="container well">
     <h1> Default Availity </h1>
     <div>
-      <div class="container well days" id="mon">
-        <div class="form-control-wrapper day">
-          <h3> Mon </h3>
-	        <input type="text" id="time-mon-start" class="form-control floating-label timepicker" placeholder="Start">
-	        <input type="text" id="time-mon-end" class="form-control floating-label timepicker" placeholder="End">
-        </div>
-      </div>
-      <div class="container well days" id="tue">
-        <div class="form-control-wrapper day">
-          <h3> Tue </h3>
-	        <input type="text" id="time-tue-start" class="form-control floating-label timepicker" placeholder="Start">
-	        <input type="text" id="time-tue-end" class="form-control floating-label timepicker" placeholder="End">
-        </div>
-      </div>
-      <div class="container well days" id="wed">
-        <div class="form-control-wrapper day">
-          <h3> Wed </h3>
-	        <input type="text" id="time-wed-start" class="form-control floating-label timepicker" placeholder="Start">
-	        <input type="text" id="time-wed-end" class="form-control floating-label timepicker" placeholder="End">
-        </div>
-      </div>
-      <div class="container well days" id="thr">
-        <div class="form-control-wrapper day">
-          <h3> Thr </h3>
-	        <input type="text" id="time-thr-start" class="form-control floating-label timepicker" placeholder="Start">
-	        <input type="text" id="time-thr-end" class="form-control floating-label timepicker" placeholder="End">
-        </div>
-      </div>
-      <div class="container well days" id="fri">
-        <div class="form-control-wrapper day">
-          <h3> Fri </h3>
-	        <input type="text" id="time-fri-start" class="form-control floating-label timepicker" placeholder="Start">
-	        <input type="text" id="time-fri-end" class="form-control floating-label timepicker" placeholder="End">
-        </div>
-      </div>
-      <div class="container well days" id="sat">
-        <div class="form-control-wrapper day">
-          <h3> Sat </h3>
-	        <input type="text" id="time-sat-start" class="form-control floating-label timepicker" placeholder="Start">
-	        <input type="text" id="time-sat-end" class="form-control floating-label timepicker" placeholder="End">
-        </div>
-      </div>
-      <div class="container well days" id="sun">
-        <div class="form-control-wrapper day">
-          <h3> Sun </h3>
-	        <input type="text" id="time-sun-start" class="form-control floating-label timepicker" placeholder="Start">
-	        <input type="text" id="time-sun-end" class="form-control floating-label timepicker" placeholder="End">
-        </div>
-      </div>
+			<template id="timepicker-temp">
+			  <div class="container well days">
+			    <div class="form-control-wrapper day">
+			      <h3 class="weekday"> </h3>
+			      <input type="text" id="time-start" class="form-control floating-label timepicker" placeholder="Start">
+			      <input type="text" id="time-end" class="form-control floating-label timepicker" placeholder="End">
+			    </div>
+			  </div>
+			</template>
     </div>
   </div>
 	<div class="container well">
@@ -144,5 +105,28 @@ div.total {
       </div>
     </div>
   </div>
+	<script>
+		var weekdays = [
+			{name="Monday" abv="Mon" id="mon"},
+			{name="Tuesday" abv="Tue" id="tue"},
+			{name="Wednesday" abv="Wed" id="wed"},
+			{name="Thrusday" abv="Thr" id="thr"},
+			{name="Friday" abv="Fri" id="fri"},
+			{name="Saturday" abv="Sat" id="sat"},
+			{name="Sunday" abv="Sun" id="sun"},
+		];
+
+		var temp = document.querySelector('#timepicker-temp');
+		for (var i = 0; i < weekdays.length; i++) {
+			var day = weekdays[i];
+			var clone = temp.content.cloneNode(true);
+			var h3 = clone.querySelectorAll('h3');
+			h3[0].innerHTML= day.abv;
+			var input = clone.querySelectorAll('input');
+			input[0].id = "time-"+day.id+"-start";
+			input[1].id = "time-"+day.id+"-end";
+			temp.parrentNode.appendChild(clone);
+		}
+	</script>
 </body>
 </html>

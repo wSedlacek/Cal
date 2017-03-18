@@ -13,78 +13,7 @@ $(document).ready(function() {
 
   //Time Picker
   //Mon
-	$('#time-mon-start').bootstrapMaterialDatePicker ({
-	  date: false,
-	  shortTime: true,
-	  format: 'h:mm a'
-	});
-	$('#time-mon-end').bootstrapMaterialDatePicker ({
-	  date: false,
-	  shortTime: true,
-	  format: 'h:mm a'
-	});
-	//Tue
-	$('#time-tue-start').bootstrapMaterialDatePicker ({
-	  date: false,
-	  shortTime: true,
-	  format: 'h:mm a'
-	});
-	$('#time-tue-end').bootstrapMaterialDatePicker ({
-	  date: false,
-	  shortTime: true,
-	  format: 'h:mm a'
-	});
-	//Wed
-	$('#time-wed-start').bootstrapMaterialDatePicker ({
-	  date: false,
-	  shortTime: true,
-	  format: 'h:mm a'
-	});
-	$('#time-wed-end').bootstrapMaterialDatePicker ({
-	  date: false,
-	  shortTime: true,
-	  format: 'h:mm a'
-	});
-	//Thr
-	$('#time-thr-start').bootstrapMaterialDatePicker ({
-	  date: false,
-	  shortTime: true,
-	  format: 'h:mm a'
-	});
-	$('#time-thr-end').bootstrapMaterialDatePicker ({
-	  date: false,
-	  shortTime: true,
-	  format: 'h:mm a'
-	});
-	//Fri
-	$('#time-fri-start').bootstrapMaterialDatePicker ({
-	  date: false,
-	  shortTime: true,
-	  format: 'h:mm a'
-	});
-	$('#time-fri-end').bootstrapMaterialDatePicker ({
-	  date: false,
-	  shortTime: true,
-	  format: 'h:mm a'
-	});
-	//Sat
-	$('#time-sat-start').bootstrapMaterialDatePicker ({
-	  date: false,
-	  shortTime: true,
-	  format: 'h:mm a'
-	});
-	$('#time-sat-end').bootstrapMaterialDatePicker ({
-	  date: false,
-	  shortTime: true,
-	  format: 'h:mm a'
-	});
-	//Sun
-	$('#time-sun-start').bootstrapMaterialDatePicker ({
-	  date: false,
-	  shortTime: true,
-	  format: 'h:mm a'
-	});
-	$('#time-sun-end').bootstrapMaterialDatePicker ({
+	$('input.timepicker').bootstrapMaterialDatePicker ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
@@ -92,13 +21,13 @@ $(document).ready(function() {
 
 	$('input.timepicker').change(function(){
 		var thisId = jQuery(this).attr("id");
-    addEventTest(thisId);
+    pendHours(thisId);
 	});
 
 	$.material.init()
 });
 
-function addEventTest(elementId) {
+function pendHours(elementId) {
 	var elementArr = elementId.split("-",3);
 	var elementStartId;
 	var elementStartArr;
@@ -138,29 +67,31 @@ function addEventTest(elementId) {
 		endTime = endHour + ":" + endMin
 	}
 
-	addEvent(startHour, endHour);
+	if (startHour > endHour) {
+		startHour = endHour + 1;
+	}
+
+	addCalEvent(startHour, startMin, endHour, endMin);
+	totalHours(endHour - startHour);
 }
 
-function addEvent(startHour, endHour) {
-
-    if (startHour > endHour) {
-      startHour = endHour + 1;
-    }
-
-    var total = endHour - startHour;
-    document.getElementById("def-hours-pen").innerHTML = "Pending: " + total;
-
+function addCalEvent(startHour, startMin, endHour, endMin) {
     var newEvent = new Object();
 
-    newEvent.title = "Avilable hours";
+    newEvent.title = "Pending Changes";
     newEvent.start = new Date();
     newEvent.end = new Date();
-    newEvent.start.setHours(startHour,0,0,0);
-    newEvent.end.setHours(endHour,0,0,0);
+    newEvent.start.setHours(startHour,startMin,0,0);
+    newEvent.end.setHours(endHour,endMin,0,0);
     newEvent.allDay = false;
     $('#calendar').fullCalendar('removeEvents') //Hide all events
     $('#calendar').fullCalendar( 'renderEvent', newEvent );
 }
+
+function totalHours(totalPen) {
+	document.getElementById("def-hours-pen").innerHTML = "Pending: " + totalPen;
+}
+
 //User Cookie
 var user;
 

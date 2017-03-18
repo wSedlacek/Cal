@@ -49,7 +49,7 @@
           input[0].id = this.getAttribute('id') + "-start";
           input[1].id = this.getAttribute('id') + "-end";
           var button = clone.querySelectorAll('button');
-          button[0].onchange = new Function("clearTime('"+this.getAttribute('id')+"')");
+          button[0].onclick = new Function("clearTime('"+this.getAttribute('id')+"')");
           this.appendChild(clone);
         }
       }

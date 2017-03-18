@@ -42,16 +42,17 @@ function pendHours(elementId) {
 		endHour = startHour + 1;
 	}
 
-	addCalEvent(startHour, startMin, endHour, endMin);
+	addCalEvent(startHour, startMin, endHour, endMin, day);
 	totalHours(endHour - startHour);
 }
 
-function addCalEvent(startHour, startMin, endHour, endMin) {
+function addCalEvent(startHour, startMin, endHour, endMin, day) {
     var newEvent = new Object();
 
     newEvent.title = "Pending Changes";
     newEvent.start = new Date();
     newEvent.end = new Date();
+		alert(new Date();)
     newEvent.start.setHours(startHour,startMin,0,0);
     newEvent.end.setHours(endHour,endMin,0,0);
     newEvent.allDay = false;

@@ -1,5 +1,16 @@
 //jquery
 $(document).ready(function() {
+
+  //Full Calendar
+	$('#calendar').fullCalendar({
+		editable: false,
+		handleWindowResize: true,
+		defaultView: 'agendaWeek',
+		displayEventTime: false,
+		allDaySlot: false,
+		firstDay: 1
+	});
+
 	$.material.init()
 });
 

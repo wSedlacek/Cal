@@ -107,13 +107,13 @@ div.total {
   </div>
 	<script>
 		var weekdays = [
-			{ name:"Monday",    abv:"Mon", id:"mon"},
-			{ name:"Tuesday",   abv:"Tue", id:"tue"},
-			{ name:"Wednesday", abv:"Wed", id:"wed"},
-			{ name:"Thrusday",  abv:"Thr", id:"thr"},
-			{ name:"Friday",    abv:"Fri", id:"fri"},
-			{ name:"Saturday",  abv:"Sat", id:"sat"},
-			{ name:"Sunday",    abv:"Sun", id:"sun"},
+			{ name:"Monday",    abv:"Mon", id:"mon" },
+			{ name:"Tuesday",   abv:"Tue", id:"tue" },
+			{ name:"Wednesday", abv:"Wed", id:"wed" },
+			{ name:"Thrusday",  abv:"Thr", id:"thr" },
+			{ name:"Friday",    abv:"Fri", id:"fri" },
+			{ name:"Saturday",  abv:"Sat", id:"sat" },
+			{ name:"Sunday",    abv:"Sun", id:"sun" },
 		];
 
 		var temp = document.querySelector('#timepicker-temp');
@@ -125,7 +125,7 @@ div.total {
 			var input = clone.querySelectorAll('input');
 			input[0].id = "time-"+day.id+"-start";
 			input[1].id = "time-"+day.id+"-end";
-			temp.parrentNode.appendChild(clone);
+			temp.parentNode.appendChild(clone);
 		}
 	</script>
 </body>

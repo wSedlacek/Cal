@@ -53,7 +53,7 @@ function pharseShift(elementId) {
 	}
 
 	if (startHour > endHour) {
-		endHour = startHour + 1;
+		endHour = startHour + 2;
 	}
 
 	var curDate = new Date();
@@ -85,6 +85,7 @@ function addPendingShift(shift) {
 	shiftEvent.start.setHours(shift.startHour,shift.startMin,0,0);
 	shiftEvent.end.setHours(shift.endHour,shift.endMin,0,0);
 	shiftEvent.allDay = false;
+	shiftEvenet.color = "#C2185B"
 	addCalEvent(shiftEvent);
 }
 

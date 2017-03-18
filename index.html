@@ -20,10 +20,6 @@
 		@media(max-width: 300px) {
 		  .well { margin : 0}
 		}
-		#submit{
-		 clear:both;
-		 float:right;
-		}
 		div.checkbox{
 		 float:left;
 		 margin-top:10px;
@@ -37,6 +33,7 @@
   <br>
   <div class="container well">
 		<user-cookie style="float:left"></user-cookie>
+		<button style="float:right" type="button" class="btn btn-primary">Logout</button>
 	</div>
 	<br>
   <div class="container well">
@@ -48,7 +45,7 @@
 		<day-timepicker name="Fri" type-id="def" day-id="fri"></day-timepicker>
 		<day-timepicker name="Sat" type-id="def" day-id="sat"></day-timepicker>
 		<day-timepicker name="Sun" type-id="def" day-id="sun"></day-timepicker>
-		<div id="submit">
+		<div id="submit-def" style="clear:both">
 			<br>
 			<button style="float:right" type="button" class="btn btn-primary">Submit</button>
 			<button style="float:right" type="button" class="btn btn-primary">Load Preset</button>
@@ -86,7 +83,7 @@
 		<day-timepicker style="display:none" name="Fri" type-id="ovr" day-id="fri"></day-timepicker>
 		<day-timepicker style="display:none" name="Sat" type-id="ovr" day-id="sat"></day-timepicker>
 		<day-timepicker style="display:none" name="Sun" type-id="ovr" day-id="sun"></day-timepicker>
-		<div id="submit">
+		<div id="submit-ovr" style="clear:both">
 			<br>
 			<button style="float:right" type="button" class="btn btn-primary">Submit</button>
 			<button style="float:right" type="button" class="btn btn-primary">Load Preset</button>

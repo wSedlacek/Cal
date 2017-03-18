@@ -104,7 +104,7 @@ $(document).ready(function() {
 
 function addEventTest(thatId) {
 	value = document.getElementById(thatId);
-	alert(thatId);
+	alert(value);
 }
 
 function addEvent() {

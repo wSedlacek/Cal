@@ -1,0 +1,15 @@
+div.days {
+    width:151px;
+    height:275px;
+    margin-right:10px;
+    margin-bottom: 10px;
+    float: left;
+}
+
+div.day {
+  margin-top: 5px;
+  margin-right:5px;
+  margin-left:5px;
+  margin-bottom:5px;
+  float: left;
+}

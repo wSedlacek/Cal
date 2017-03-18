@@ -18,10 +18,10 @@
   </style>
   <div class="container well totals">
     <div class="form-control-wrapper total">
-      <h3> This week </h3>
-      <h id='this-hours-cur'>Current: 0</h>
+      <h3> </h3>
+      <h id='hours-cur'>Current: 0</h>
       <br>
-      <h id='this-hours-pen'>Pending: 0</h>
+      <h id='hours-pen'>Pending: 0</h>
     </div>
   </div>
 </template>
@@ -36,7 +36,7 @@
           var clone = document.importNode(t.content, true);
           var h3 = clone.querySelectorAll('h3');
           h3[0].innerHTML= this.getAttribute('name');
-          var h = clone.querySelectorAll('input');
+          var h = clone.querySelectorAll('h');
           h[0].id = this.getAttribute('id') + "-hours-cur";
           h[1].id = this.getAttribute('id') + "-hours-pen";
           this.appendChild(clone);

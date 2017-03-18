@@ -7,6 +7,13 @@
 <script src="../bower_components/moment/min/moment-with-locales.min.js"></script>
 
 <template id="cal-temp">
+  <link href='./materialFullCalendar.css' rel='stylesheet' />
+  <style>
+    #calendar {
+  	  max-width: 100%;
+  	  margin: 0 auto;
+  	}
+  </style>
   <div >
     <div id='calendar'></div>
   </div>
@@ -29,7 +36,12 @@
 
     $(document).ready(function() {
       $('#calendar').fullCalendar({
-    		defaultView: 'agendaWeek'
+    		editable: false,
+    		handleWindowResize: true,
+    		defaultView: 'agendaWeek',
+    		displayEventTime: true,
+    		allDaySlot: false,
+    		firstDay: 1
     	});
     });
   })();

@@ -52,7 +52,7 @@ function addCalEvent(startHour, startMin, endHour, endMin, day) {
     newEvent.title = "Pending Changes";
     newEvent.start = new Date();
     newEvent.end = new Date();
-		var curDay = (newEvent.end.split(" ", 2))[0];
+		var curDay = (String(newEvent.end).split(" ", 2))[0];
 		alert(curDay);
     newEvent.start.setHours(startHour,startMin,0,0);
     newEvent.end.setHours(endHour,endMin,0,0);

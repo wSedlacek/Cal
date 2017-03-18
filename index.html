@@ -1,67 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-		<script src="./bower_components/jquery/dist/jquery.min.js"></script>
-		<script type="text/javascript" src="./bower_components/moment/min/moment-with-locales.min.js"></script>
+	<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="./bower_components/moment/min/moment-with-locales.min.js"></script>
 
-    <link rel="import" href='./imports/fonts.html' />
-    <link rel="import" href='./imports/material.html' />
-		<link rel="import" href='./imports/fullcalendar.html' />
+  <link rel="import" href='./imports/fonts.html' />
+  <link rel="import" href='./imports/material.html' />
+	<link rel="import" href='./imports/fullcalendar.html' />
 
-		<link rel="import" href='./imports/day-timepicker/day-timepicker.html' />
+	<link rel="import" href='./imports/day-timepicker/day-timepicker.html' />
 
-		<style>
-#calendar {
-  max-width: 100%;
-  margin: 0 auto;
-}
+	<style>
+	#calendar {
+	  max-width: 100%;
+	  margin: 0 auto;
+	}
 
-.form-control-wrapper {
-	margin: 10px 20px;
-}
+	div.totals {
+	  width:300px;
+	  height:175px;
+	  margin-right:10px;
+	  margin-bottom: 10px;
+	  float: left;
+	}
 
-div.days {
-    width:151px;
-    height:275px;
-    margin-right:10px;
-    margin-bottom: 10px;
-    float: left;
-}
+	div.total {
+	  margin-top: 5px;
+	  margin-right:5px;
+	  margin-left:5px;
+	  margin-bottom:5px;
+	  float: left;
+	}
 
-div.day {
-  margin-top: 5px;
-  margin-right:5px;
-  margin-left:5px;
-  margin-bottom:5px;
-  float: left;
-}
-
-div.totals {
-  width:300px;
-  height:175px;
-  margin-right:10px;
-  margin-bottom: 10px;
-  float: left;
-}
-
-div.total {
-  margin-top: 5px;
-  margin-right:5px;
-  margin-left:5px;
-  margin-bottom:5px;
-  float: left;
-}
-
-@media(max-width: 300px)
-{
-  .well { margin : 0}
-}
-		</style>
-    <script src="./script.js"></script>
+	@media(max-width: 300px)
+	{
+	  .well { margin : 0}
+	}
+	</style>
+	<script src="./script.js"></script>
 </head>
 <body onload="checkUser()">
 

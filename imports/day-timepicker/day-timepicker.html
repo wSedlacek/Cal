@@ -18,6 +18,10 @@
     margin-bottom:5px;
     float: left;
     }
+
+    .form-control-wrapper {
+    	margin: 10px 20px;
+    }
   </style>
   <div class="container well days">
     <div class="form-control-wrapper day">
@@ -34,9 +38,9 @@
 
     // Define and register <day-timepicker>
     // that uses Shadow DOM and a template.
-    var proto2 = Object.create(HTMLElement.prototype);
+    var proto = Object.create(HTMLElement.prototype);
 
-    proto2.createdCallback = function() {
+    proto.createdCallback = function() {
       // get template in import
       var template = importDoc.querySelector('#day-temp');
 
@@ -53,10 +57,6 @@
       root.appendChild(clone);
     };
 
-    document.registerElement('day-timepicker', {prototype: proto2});
+    document.registerElement('day-timepicker', {prototype: proto});
   })();
 </script>
-
-    h3[0].innerHTML= day.abv;
-    input[0].id = "time-"+day.id+"-start";
-    input[1].id = "time-"+day.id+"-end";

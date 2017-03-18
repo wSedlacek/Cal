@@ -105,7 +105,7 @@ $(document).ready(function() {
 function addEventTest(thatId) {
 	var elementId = thatId.split("-",3);;
 	var time = document.getElementById(thatId);
-	var day = elementId[2];
+	var day = elementId[1];
 	alert(day);
 }
 

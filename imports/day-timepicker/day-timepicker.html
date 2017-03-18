@@ -33,20 +33,21 @@
 </template>
 
 <script>
-
-  var proto = Object.create(HTMLElement.prototype, {
-    createdCallback: {
-      value: function() {
-        var t = document.querySelector('#day-temp');
-        var clone = document.importNode(t.content, true);
-        var h3 = clone.querySelectorAll('h3');
-        h3[0].innerHTML= this.getAttribute('name');
-        var input = clone.querySelectorAll('input');
-        input[0].id = "time-" + this.getAttribute('id') + "-start";
-        input[1].id = "time-" + this.getAttribute('id') + "-end";
-        this.createShadowRoot().appendChild(clone);
+  (function() {
+    var proto = Object.create(HTMLElement.prototype, {
+      createdCallback: {
+        value: function() {
+          var t = document.querySelector('#day-temp');
+          var clone = document.importNode(t.content, true);
+          var h3 = clone.querySelectorAll('h3');
+          h3[0].innerHTML= this.getAttribute('name');
+          var input = clone.querySelectorAll('input');
+          input[0].id = "time-" + this.getAttribute('id') + "-start";
+          input[1].id = "time-" + this.getAttribute('id') + "-end";
+          this.createShadowRoot().appendChild(clone);
+        }
       }
-    }
-  });
-  document.registerElement('day-timepicker', {prototype: proto});
+    });
+    document.registerElement('day-timepicker', {prototype: proto});
+  })();
 </script>

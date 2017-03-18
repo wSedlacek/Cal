@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+
+  <link rel="import" href='./imports/fonts.html' />
+	<link rel="import" href='./imports/cal-hours.html' />
+	<link rel="import" href='./imports/day-timepicker.html' />
+	<link rel="import" href='./imports/total-hours.html' />
+	<link rel="import" href='./imports/user-cookie.html' />
+  <link rel="import" href='./imports/material.html' />
+
+	<script src="./script.js"></script>
+
+	<style>
+		@media(max-width: 300px) {
+		  .well { margin : 0}
+		}
+	</style>
+</head>
+
+<body>
+  <br>
+  <div class="container well">
+	  <div class="container well">
+			<user-cookie></user-cookie>
+		</div>
+	</div>
+	<br>
+  <div class="container well">
+    <h1> Default Availity </h1>
+    <day-timepicker name="Mon" type-id="def" day-id="mon"></day-timepicker>
+		<day-timepicker name="Tue" type-id="def" day-id="tue"></day-timepicker>
+		<day-timepicker name="Wed" type-id="def" day-id="wed"></day-timepicker>
+		<day-timepicker name="Thr" type-id="def" day-id="thr"></day-timepicker>
+		<day-timepicker name="Fri" type-id="def" day-id="fri"></day-timepicker>
+		<day-timepicker name="Sat" type-id="def" day-id="sat"></day-timepicker>
+		<day-timepicker name="Sun" type-id="def" day-id="sun"></day-timepicker>
+  </div>
+	<div class="container well">
+		<cal-hours></cal-hours>
+	</div>
+  <br>
+	<div class="container well">
+	  <h1> Totals </h1>
+		<total-hours name="Default" id="def"></total-hours>
+		<total-hours name="This Week" id="this"></total-hours>
+  </div>
+</body>
+
+</html>

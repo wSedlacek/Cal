@@ -1,55 +1,122 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset='utf-8' />
+<link href='./bower_components/fullcalendar/dist/fullcalendar.min.css' rel='stylesheet' />
+<link href='./bower_components/fullcalendar/dist/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<script src='./bower_components/moment/min/moment.min.js'></script>
+<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src='./bower_components/fullcalendar/dist/fullcalendar.min.js'></script>
 
-	<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script>
 
-  <link rel="import" href='./imports/fonts.html' />
-	<link rel="import" href='./imports/cal-hours.html' />
-	<link rel="import" href='./imports/day-timepicker.html' />
-	<link rel="import" href='./imports/total-hours.html' />
-	<link rel="import" href='./imports/user-cookie.html' />
-  <link rel="import" href='./imports/material.html' />
+	$(document).ready(function() {
 
-	<script src="./script.js"></script>
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			defaultDate: '2017-02-12',
+			navLinks: true, // can click day/week names to navigate views
+			selectable: true,
+			selectHelper: true,
+			select: function(start, end) {
+				var title = prompt('Event Title:');
+				var eventData;
+				if (title) {
+					eventData = {
+						title: title,
+						start: start,
+						end: end
+					};
+					$('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+				}
+				$('#calendar').fullCalendar('unselect');
+			},
+			editable: true,
+			eventLimit: true, // allow "more" link when too many events
+			events: [
+				{
+					title: 'All Day Event',
+					start: '2017-02-01'
+				},
+				{
+					title: 'Long Event',
+					start: '2017-02-07',
+					end: '2017-02-10'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2017-02-09T16:00:00'
+				},
+				{
+					id: 999,
+					title: 'Repeating Event',
+					start: '2017-02-16T16:00:00'
+				},
+				{
+					title: 'Conference',
+					start: '2017-02-11',
+					end: '2017-02-13'
+				},
+				{
+					title: 'Meeting',
+					start: '2017-02-12T10:30:00',
+					end: '2017-02-12T12:30:00'
+				},
+				{
+					title: 'Lunch',
+					start: '2017-02-12T12:00:00'
+				},
+				{
+					title: 'Meeting',
+					start: '2017-02-12T14:30:00'
+				},
+				{
+					title: 'Happy Hour',
+					start: '2017-02-12T17:30:00'
+				},
+				{
+					title: 'Dinner',
+					start: '2017-02-12T20:00:00'
+				},
+				{
+					title: 'Birthday Party',
+					start: '2017-02-13T07:00:00'
+				},
+				{
+					title: 'Click for Google',
+					url: 'http://google.com/',
+					start: '2017-02-28'
+				}
+			]
+		});
 
-	<style>
-		@media(max-width: 300px) {
-		  .well { margin : 0}
-		}
-	</style>
+	});
+
+</script>
+<style>
+
+	body {
+		margin: 40px 10px;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+</style>
 </head>
-
 <body>
-  <br>
-  <div class="container well">
-	  <div class="container well">
-			<user-cookie></user-cookie>
-		</div>
-	</div>
-	<br>
-  <div class="container well">
-    <h1> Default Availity </h1>
-    <day-timepicker name="Mon" type-id="def" day-id="mon"></day-timepicker>
-		<day-timepicker name="Tue" type-id="def" day-id="tue"></day-timepicker>
-		<day-timepicker name="Wed" type-id="def" day-id="wed"></day-timepicker>
-		<day-timepicker name="Thr" type-id="def" day-id="thr"></day-timepicker>
-		<day-timepicker name="Fri" type-id="def" day-id="fri"></day-timepicker>
-		<day-timepicker name="Sat" type-id="def" day-id="sat"></day-timepicker>
-		<day-timepicker name="Sun" type-id="def" day-id="sun"></day-timepicker>
-  </div>
-	<div class="container well">
-		<cal-hours></cal-hours>
-	</div>
-  <br>
-	<div class="container well">
-	  <h1> Totals </h1>
-		<total-hours name="Default" id="def"></total-hours>
-		<total-hours name="This Week" id="this"></total-hours>
-  </div>
-</body>
 
+	<div id='calendar'></div>
+
+</body>
 </html>

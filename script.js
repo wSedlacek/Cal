@@ -138,33 +138,25 @@ function addEventTest(elementId) {
 		endTime = endHour + ":" + endMin
 	}
 
-
-	alert("Your shift starts at " + startTime + " on " + day + " and ends at " + endTime);
+	addEvent(startHour, endHour);
 }
 
-function addEvent() {
-    var startdrop = document.getElementById("#time-mon-start");
-    var starthour = Number();
+function addEvent(startHour, endHour) {
 
-    var enddrop = document.getElementById("#time-mon-end");
-    var endhour = Number();
-
-    if (starthour > endhour) {
-      console.log(starthour + " " + endhour);
-      endhour = starthour + 1;
-      enddrop.value = endhour;
+    if (startHour > endHour) {
+      startHour = endHour + 1;
     }
 
-    var total = endhour - starthour;
-    document.getElementById("totalhours").innerHTML = "Total: " + total;
+    var total = endHour - startHour;
+    document.getElementById("def-hours-pen").innerHTML = "Pending: " + total;
 
     var newEvent = new Object();
 
     newEvent.title = "Avilable hours";
     newEvent.start = new Date();
     newEvent.end = new Date();
-    newEvent.start.setHours(starthour,0,0,0);
-    newEvent.end.setHours(endhour,0,0,0);
+    newEvent.start.setHours(startHour,0,0,0);
+    newEvent.end.setHours(endHour,0,0,0);
     newEvent.allDay = false;
     $('#calendar').fullCalendar('removeEvents') //Hide all events
     $('#calendar').fullCalendar( 'renderEvent', newEvent );

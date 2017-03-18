@@ -285,3 +285,7 @@ function totalCurrentHours(totalPen) {
 function totalPendingHours(totalPen) {
 	document.getElementById("def-hours-pen").innerHTML = "Pending: " + totalPen;
 }
+
+showHideOvr(weekDayOvr) {
+	document.getElementById("ovr-" + weekDayOvr).style.display = "block";
+}

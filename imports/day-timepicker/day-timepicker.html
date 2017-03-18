@@ -1,2 +1,54 @@
-<link rel="import" href='./timepicker.html' />
-<link rel="import" href='../material.html' />
+<link rel="stylesheet" href="../../bower_components/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" />
+<script src="../../bower_components/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+
+<template id="day-temp">
+  <style>
+    div.days {
+      width:151px;
+      height:275px;
+      margin-right:10px;
+      margin-bottom: 10px;
+      float: left;
+    }
+
+    div.day {
+      margin-top: 5px;
+      margin-right:5px;
+      margin-left:5px;
+      margin-bottom:5px;
+      float: left;
+    }
+
+    .form-control-wrapper {
+      margin: 10px 20px;
+    }
+  </style>
+  <div class="container well days">
+    <div class="form-control-wrapper day">
+      <h3 class="weekday"> </h3>
+      <input type="text" id="time-start" class="form-control floating-label timepicker" placeholder="Start">
+      <input type="text" id="time-end" class="form-control floating-label timepicker" placeholder="End">
+    </div>
+  </div>
+</template>
+
+<script>
+  (function() {
+    var importDoc = document.currentScript.ownerDocument; // importee
+    var proto = Object.create(HTMLElement.prototype, {
+      createdCallback: {
+        value: function() {
+          var t = importDoc.querySelector('#day-temp');
+          var clone = document.importNode(t.content, true);
+          var h3 = clone.querySelectorAll('h3');
+          h3[0].innerHTML= this.getAttribute('name');
+          var input = clone.querySelectorAll('input');
+          input[0].id = "time-" + this.getAttribute('id') + "-start";
+          input[1].id = "time-" + this.getAttribute('id') + "-end";
+          this.appendChild(clone);
+        }
+      }
+    });
+    document.registerElement('day-timepicker', {prototype: proto});
+  })();
+</script>

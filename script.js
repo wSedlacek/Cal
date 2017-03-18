@@ -106,8 +106,8 @@ function addEventTest(elementId) {
 	var elementEndArr;
 	var startOrEnd = elementArr[2];
 	if (startOrEnd == "end" ) {
-		alert(elementArr[1] + "-" + day + "-start")
-		elementStartId = elementArr[1] + "-" + elementArr[1] + "-start";
+		alert(elementArr[0] + "-" + elementArr[1] + "-start")
+		elementStartId = elementArr[0] + "-" + elementArr[1] + "-start";
 		elementStartArr = elementStartId.split("-",3);
 		elementEndId = elementId;
 		elementEndArr = elementArr;
@@ -115,7 +115,7 @@ function addEventTest(elementId) {
 		elementStartId = elementId;
 		elementStartArr = elementArr;
 		alert(elementArr[0] + "-" + elementArr[1] + "-end")
-		elementEndId = elementArr[1] + "-" + day + "-end";
+		elementEndId = elementArr[0] + "-" + elementArr[1] + "-end";
 		elementEndArr = elementEndId.split("-",3);
 	}
 	var day = elementArr[1];

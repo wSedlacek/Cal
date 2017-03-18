@@ -28,7 +28,7 @@ function pendHours(elementId) {
 	if (startAmOrPm == "pm" && startHour < 12) {
 		startHour +=12;
 		startTime = startHour + ":" + startMin
-	} else if (startMin == "am" && startHour == 12) {
+	} else if (startAmOrPm == "am" && startHour == 12) {
 		startHour = 0;
 	}
 

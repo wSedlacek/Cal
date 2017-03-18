@@ -1,5 +1,5 @@
 function pendShift(elementId) {
-	shift = pharseShift();
+	shift = pharseShift(elementId);
 	addPendingShift(shift);
 	totalPendingHours(shift.endHour - shift.startHour);
 }

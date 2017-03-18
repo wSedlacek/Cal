@@ -52,8 +52,182 @@ function addCalEvent(startHour, startMin, endHour, endMin, day) {
     newEvent.title = "Pending Changes";
     newEvent.start = new Date();
     newEvent.end = new Date();
-		var curDay = (String(newEvent.end).split(" ", 2))[0];
-		alert(curDay);
+		var curWeekDay = (String(newEvent.end).split(" ", 2))[0];
+		var curDay = Number((String(newEvent.end).split(" ", 4))[2]);
+		var startDay;
+
+		switch (curWeekDay) {
+			case "Mon":
+				switch (day) {
+					case "mon":
+						startDay = curDay;
+						break;
+					case "tue":
+						startDay = curDay + 1;
+						break;
+					case "wed":
+						startDay = curDay + 2;
+						break;
+					case "thr":
+						startDay = curDay + 3;
+						break;
+					case "fri":
+						startDay = curDay + 4;
+						break;
+					case "sat":
+						startDay = curDay + 5;
+						break;
+					case "sun":
+						startDay = curDay + 6;
+						break;
+				}
+			case "Tue":
+				switch (day) {
+					case "mon":
+						startDay = curDay - 1;
+						break;
+					case "tue":
+						startDay = curDay;
+						break;
+					case "wed":
+						startDay = curDay + 1;
+						break;
+					case "thr":
+						startDay = curDay + 2;
+						break;
+					case "fri":
+						startDay = curDay + 3;
+						break;
+					case "sat":
+						startDay = curDay + 4;
+						break;
+					case "sun":
+						startDay = curDay + 5;
+						break;
+				}
+			case "Wed":
+				switch (day) {
+					case "mon":
+						startDay = curDay - 2;
+						break;
+					case "tue":
+						startDay = curDay - 1;
+						break;
+					case "wed":
+						startDay = curDay;
+						break;
+					case "thr":
+						startDay = curDay + 1;
+						break;
+					case "fri":
+						startDay = curDay + 2;
+						break;
+					case "sat":
+						startDay = curDay + 3;
+						break;
+					case "sun":
+						startDay = curDay + 4;
+						break;
+				}
+			case "Thr":
+				switch (day) {
+					case "mon":
+						startDay = curDay - 3;
+						break;
+					case "tue":
+						startDay = curDay - 2;
+						break;
+					case "wed":
+						startDay = curDay - 1;
+						break;
+					case "thr":
+						startDay = curDay;
+						break;
+					case "fri":
+						startDay = curDay + 1;
+						break;
+					case "sat":
+						startDay = curDay + 2;
+						break;
+					case "sun":
+						startDay = curDay + 3;
+						break;
+				}
+			case "Fri":
+				switch (day) {
+					case "mon":
+						startDay = curDay - 4;
+						break;
+					case "tue":
+						startDay = curDay - 3;
+						break;
+					case "wed":
+						startDay = curDay - 2;
+						break;
+					case "thr":
+						startDay = curDay - 1;
+						break;
+					case "fri":
+						startDay = curDay;
+						break;
+					case "sat":
+						startDay = curDay + 1;
+						break;
+					case "sun":
+						startDay = curDay + 2;
+						break;
+				}
+			case "Sat":
+				switch (day) {
+					case "mon":
+						startDay = curDay - 5;
+						break;
+					case "tue":
+						startDay = curDay - 4;
+						break;
+					case "wed":
+						startDay = curDay - 3;
+						break;
+					case "thr":
+						startDay = curDay - 2;
+						break;
+					case "fri":
+						startDay = curDay - 1;
+						break;
+					case "sat":
+						startDay = curDay;
+						break;
+					case "sun":
+						startDay = curDay + 1;
+						break;
+				}
+			case "Sun":
+				switch (day) {
+					case "mon":
+						startDay = curDay - 6;
+						break;
+					case "tue":
+						startDay = curDay - 5;
+						break;
+					case "wed":
+						startDay = curDay - 4;
+						break;
+					case "thr":
+						startDay = curDay - 3;
+						break;
+					case "fri":
+						startDay = curDay - 2;
+						break;
+					case "sat":
+						startDay = curDay - 1;
+						break;
+					case "sun":
+						startDay = curDay;
+						break;
+				}
+		}
+		newEvent.start.setDate(startDay);
+		newEvent.end.setDate(startDay);
     newEvent.start.setHours(startHour,startMin,0,0);
     newEvent.end.setHours(endHour,endMin,0,0);
     newEvent.allDay = false;

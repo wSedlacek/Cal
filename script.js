@@ -287,5 +287,11 @@ function totalPendingHours(totalPen) {
 }
 
 function showHideOvr(weekDayOvr) {
-	document.getElementById("ovr-" + weekDayOvr).style.display = "block";
+	var enabled = document.getElementById("chk-"+ weekDayOvr).value;
+	var ovrday = document.getElementById("ovr-" + weekDayOvr);
+	if (enabled) {
+		ovrday.style.display = "block";
+	} else {
+		ovrday.style.display = "none";
+	}
 }

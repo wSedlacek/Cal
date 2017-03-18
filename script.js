@@ -3,7 +3,8 @@ $(document).ready(function() {
 	$.material.init()
 });
 
-import addCalEvent from './imports/cal-hours/cal-hours.js';
+$.getScript( "./imports/cal-hours/cal-hours.js" );
+
 function pendHours(elementId) {
 	var elementArr = elementId.split("-",3);
 	var elementStartId;

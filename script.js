@@ -27,6 +27,8 @@ function pendHours(elementId) {
 	if (startAmOrPm == "pm" && startHour < 12) {
 		startHour +=12;
 		startTime = startHour + ":" + startMin
+	} else if (startMin == "am" && startHour == 12) {
+		startHour = 0;
 	}
 
 	var endAmOrPm = (endTime.split(" ", 2))[1];
@@ -36,6 +38,8 @@ function pendHours(elementId) {
 	if (endAmOrPm == "pm" && endHour < 12) {
 		endHour +=12;
 		endTime = endHour + ":" + endMin
+	} else if (endAmOrPm == "am" && endHour == 12) {
+		endHour = 0;
 	}
 
 	if (startHour > endHour) {

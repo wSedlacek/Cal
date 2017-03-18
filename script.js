@@ -3,7 +3,13 @@ $(document).ready(function() {
 	$.material.init()
 });
 
-$.getScript( "./imports/cal-hours/cal-hours.js" );
+$.getScript( "./imports/cal-hours/cal-hours.js" )
+  .done(function( script, textStatus ) {
+    console.log( textStatus );
+  })
+  .fail(function( jqxhr, settings, exception ) {
+    $( "div.log" ).text( "Triggered ajaxError handler." );
+});
 
 function pendHours(elementId) {
 	var elementArr = elementId.split("-",3);

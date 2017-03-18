@@ -16,7 +16,7 @@ function pendHours(elementId) {
 		elementEndId = elementArr[0] + "-" + elementArr[1] + "-end";
 		elementEndArr = elementEndId.split("-",3);
 	}
-	var day = elementArr[1];
+	var shiftWeekDay = elementArr[1];
 	var startTime = (document.getElementById(elementStartId)).value;
 	var endTime = (document.getElementById(elementEndId)).value;
 
@@ -42,205 +42,208 @@ function pendHours(elementId) {
 		endHour = startHour + 1;
 	}
 
-	addCalEvent(startHour, startMin, endHour, endMin, day);
+	addCalEvent(startHour, startMin, endHour, endMin, shiftWeekDay);
 	totalHours(endHour - startHour);
 }
 
-function addCalEvent(startHour, startMin, endHour, endMin, day) {
-    var newEvent = new Object();
+function addCalEvent(startHour, startMin, endHour, endMin, shiftWeekDay) {
+    var shift = new Object();
 
-    newEvent.title = "Pending Changes";
-    newEvent.start = new Date();
-    newEvent.end = new Date();
-		var curWeekDay = (String(newEvent.end).split(" ", 2))[0];
+    shift.title = "Pending Changes";
+    shift.start = new Date();
+    shift.end = new Date();
 		var curDay = Number((String(newEvent.end).split(" ", 4))[2]);
-		alert(curWeekDay + " " + curDay);
-		var startDay;
-
-		switch (curWeekDay) {
-			case "Mon":
-				switch (day) {
-					case "mon":
-						startDay = curDay;
-						break;
-					case "tue":
-						startDay = curDay + 1;
-						break;
-					case "wed":
-						startDay = curDay + 2;
-						break;
-					case "thr":
-						startDay = curDay + 3;
-						break;
-					case "fri":
-						startDay = curDay + 4;
-						break;
-					case "sat":
-						startDay = curDay + 5;
-						break;
-					case "sun":
-						startDay = curDay + 6;
-						break;
-				}
-				break;
-			case "Tue":
-				switch (day) {
-					case "mon":
-						startDay = curDay - 1;
-						break;
-					case "tue":
-						startDay = curDay;
-						break;
-					case "wed":
-						startDay = curDay + 1;
-						break;
-					case "thr":
-						startDay = curDay + 2;
-						break;
-					case "fri":
-						startDay = curDay + 3;
-						break;
-					case "sat":
-						startDay = curDay + 4;
-						break;
-					case "sun":
-						startDay = curDay + 5;
-						break;
-				}
-				break;
-			case "Wed":
-				switch (day) {
-					case "mon":
-						startDay = curDay - 2;
-						break;
-					case "tue":
-						startDay = curDay - 1;
-						break;
-					case "wed":
-						startDay = curDay;
-						break;
-					case "thr":
-						startDay = curDay + 1;
-						break;
-					case "fri":
-						startDay = curDay + 2;
-						break;
-					case "sat":
-						startDay = curDay + 3;
-						break;
-					case "sun":
-						startDay = curDay + 4;
-						break;
-				}
-				break;
-			case "Thr":
-				switch (day) {
-					case "mon":
-						startDay = curDay - 3;
-						break;
-					case "tue":
-						startDay = curDay - 2;
-						break;
-					case "wed":
-						startDay = curDay - 1;
-						break;
-					case "thr":
-						startDay = curDay;
-						break;
-					case "fri":
-						startDay = curDay + 1;
-						break;
-					case "sat":
-						startDay = curDay + 2;
-						break;
-					case "sun":
-						startDay = curDay + 3;
-						break;
-				}
-				break;
-			case "Fri":
-				switch (day) {
-					case "mon":
-						startDay = curDay - 4;
-						break;
-					case "tue":
-						startDay = curDay - 3;
-						break;
-					case "wed":
-						startDay = curDay - 2;
-						break;
-					case "thr":
-						startDay = curDay - 1;
-						break;
-					case "fri":
-						startDay = curDay;
-						break;
-					case "sat":
-						startDay = curDay + 1;
-						break;
-					case "sun":
-						startDay = curDay + 2;
-						break;
-				}
-				break;
-			case "Sat":
-				switch (day) {
-					case "mon":
-						startDay = curDay - 5;
-						break;
-					case "tue":
-						startDay = curDay - 4;
-						break;
-					case "wed":
-						startDay = curDay - 3;
-						break;
-					case "thr":
-						startDay = curDay - 2;
-						break;
-					case "fri":
-						startDay = curDay - 1;
-						break;
-					case "sat":
-						startDay = curDay;
-						break;
-					case "sun":
-						startDay = curDay + 1;
-						break;
-				}
-				break;
-			case "Sun":
-				switch (day) {
-					case "mon":
-						startDay = curDay - 6;
-						break;
-					case "tue":
-						startDay = curDay - 5;
-						break;
-					case "wed":
-						startDay = curDay - 4;
-						break;
-					case "thr":
-						startDay = curDay - 3;
-						break;
-					case "fri":
-						startDay = curDay - 2;
-						break;
-					case "sat":
-						startDay = curDay - 1;
-						break;
-					case "sun":
-						startDay = curDay;
-						break;
-				}
-				break;
-		}
-		newEvent.start.setDate(startDay);
-		newEvent.end.setDate(startDay);
-    newEvent.start.setHours(startHour,startMin,0,0);
-    newEvent.end.setHours(endHour,endMin,0,0);
-    newEvent.allDay = false;
+		var curWeekDay = (String(newEvent.end).split(" ", 2))[0];
+		shift.day = generateStartDay(curDay, curWeekDay, shiftWeekDay);
+		shift.start.setDate(shift.day);
+		shift.end.setDate(shift.day);
+    shift.start.setHours(startHour,startMin,0,0);
+    shift.end.setHours(endHour,endMin,0,0);
+    shift.allDay = false;
     $('#calendar').fullCalendar('removeEvents') //Hide all events
-    $('#calendar').fullCalendar( 'renderEvent', newEvent );
+    $('#calendar').fullCalendar( 'renderEvent', shift );
+}
+
+function generateStartDay(curDay, curWeekDay, shiftWeekDay) {
+	var shiftDay;
+	switch (curWeekDay) {
+		case "Mon":
+			switch (shiftWeekDay) {
+				case "mon":
+					shiftDay = curDay;
+					break;
+				case "tue":
+					shiftDay = curDay + 1;
+					break;
+				case "wed":
+					shiftDay = curDay + 2;
+					break;
+				case "thr":
+					shiftDay = curDay + 3;
+					break;
+				case "fri":
+					shiftDay = curDay + 4;
+					break;
+				case "sat":
+					shiftDay = curDay + 5;
+					break;
+				case "sun":
+					shiftDay = curDay + 6;
+					break;
+			}
+			break;
+		case "Tue":
+			switch (shiftWeekDay) {
+				case "mon":
+					shiftDay = curDay - 1;
+					break;
+				case "tue":
+					shiftDay = curDay;
+					break;
+				case "wed":
+					shiftDay = curDay + 1;
+					break;
+				case "thr":
+					shiftDay = curDay + 2;
+					break;
+				case "fri":
+					shiftDay = curDay + 3;
+					break;
+				case "sat":
+					shiftDay = curDay + 4;
+					break;
+				case "sun":
+					shiftDay = curDay + 5;
+					break;
+			}
+			break;
+		case "Wed":
+			switch (shiftWeekDay) {
+				case "mon":
+					shiftDay = curDay - 2;
+					break;
+				case "tue":
+					shiftDay = curDay - 1;
+					break;
+				case "wed":
+					shiftDay = curDay;
+					break;
+				case "thr":
+					shiftDay = curDay + 1;
+					break;
+				case "fri":
+					shiftDay = curDay + 2;
+					break;
+				case "sat":
+					shiftDay = curDay + 3;
+					break;
+				case "sun":
+					shiftDay = curDay + 4;
+					break;
+			}
+			break;
+		case "Thr":
+			switch (shiftWeekDay) {
+				case "mon":
+					shiftDay = curDay - 3;
+					break;
+				case "tue":
+					shiftDay = curDay - 2;
+					break;
+				case "wed":
+					shiftDay = curDay - 1;
+					break;
+				case "thr":
+					shiftDay = curDay;
+					break;
+				case "fri":
+					shiftDay = curDay + 1;
+					break;
+				case "sat":
+					shiftDay = curDay + 2;
+					break;
+				case "sun":
+					shiftDay = curDay + 3;
+					break;
+			}
+			break;
+		case "Fri":
+			switch (shiftWeekDay) {
+				case "mon":
+					shiftDay = curDay - 4;
+					break;
+				case "tue":
+					shiftDay = curDay - 3;
+					break;
+				case "wed":
+					shiftDay = curDay - 2;
+					break;
+				case "thr":
+					shiftDay = curDay - 1;
+					break;
+				case "fri":
+					shiftDay = curDay;
+					break;
+				case "sat":
+					shiftDay = curDay + 1;
+					break;
+				case "sun":
+					shiftDay = curDay + 2;
+					break;
+			}
+			break;
+		case "Sat":
+			switch (shiftWeekDay) {
+				case "mon":
+					shiftDay = curDay - 5;
+					break;
+				case "tue":
+					shiftDay = curDay - 4;
+					break;
+				case "wed":
+					shiftDay = curDay - 3;
+					break;
+				case "thr":
+					shiftDay = curDay - 2;
+					break;
+				case "fri":
+					shiftDay = curDay - 1;
+					break;
+				case "sat":
+					shiftDay = curDay;
+					break;
+				case "sun":
+					shiftDay = curDay + 1;
+					break;
+			}
+			break;
+		case "Sun":
+			switch (shiftWeekDay) {
+				case "mon":
+					shiftDay = curDay - 6;
+					break;
+				case "tue":
+					shiftDay = curDay - 5;
+					break;
+				case "wed":
+					shiftDay = curDay - 4;
+					break;
+				case "thr":
+					shiftDay = curDay - 3;
+					break;
+				case "fri":
+					shiftDay = curDay - 2;
+					break;
+				case "sat":
+					shiftDay = curDay - 1;
+					break;
+				case "sun":
+					shiftDay = curDay;
+					break;
+			}
+			break;
+	}
+	return shiftDay;
 }
 
 

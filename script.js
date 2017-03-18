@@ -119,9 +119,27 @@ function addEventTest(elementId) {
 	var day = elementArr[1];
 	var startTime = (document.getElementById(elementStartId)).value;
 	var endTime = (document.getElementById(elementEndId)).value;
-	var startTimeAmOrPm = (startTime.split(" ", 2))[1];
-	var endTimeAmOrPm = (endTime.split(" ", 2))[1];
-	alert(startTimeAmOrPm);
+
+	var startAmOrPm = (startTime.split(" ", 2))[1];
+	startTime = (startTime.split(" ", 2))[0];
+	var startHour = (startTime.split(":", 2))[0];
+	var startMin = (startTime.split(":", 2))[1];
+	if (startAmOrPm == "pm") {
+		startHour +=12;
+		startTime = startHour + ":" + startMin
+	}
+
+	var endAmOrPm = (endTime.split(" ", 2))[1];
+	endTime = (endTime.split(" ", 2))[0];
+	endHour = (endTime.split(":", 2))[0];
+	endMin = (endTime.split(":", 2))[1];
+	if (endAmOrPm == "pm") {
+		endHour +=12;
+		endTime = startHour + ":" + startMin
+	}
+
+
+	alert("Your shift starts at " + startTime + " on " + day + " and ends at " + endTime);
 }
 
 function addEvent() {

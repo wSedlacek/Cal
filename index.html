@@ -10,36 +10,30 @@
 
   <link rel="import" href='./imports/fonts.html' />
   <link rel="import" href='./imports/material.html' />
-	<link rel="import" href='./imports/fullcalendar.html' />
-
-	<link rel="import" href='./imports/day-timepicker/day-timepicker.html' />
+	<link rel="import" href='./imports/cal-hours.html' />
+	<link rel="import" href='./imports/day-timepicker.html' />
 
 	<style>
-	#calendar {
-	  max-width: 100%;
-	  margin: 0 auto;
-	}
+		div.totals {
+		  width:300px;
+		  height:175px;
+		  margin-right:10px;
+		  margin-bottom: 10px;
+		  float: left;
+		}
 
-	div.totals {
-	  width:300px;
-	  height:175px;
-	  margin-right:10px;
-	  margin-bottom: 10px;
-	  float: left;
-	}
+		div.total {
+		  margin-top: 5px;
+		  margin-right:5px;
+		  margin-left:5px;
+		  margin-bottom:5px;
+		  float: left;
+		}
 
-	div.total {
-	  margin-top: 5px;
-	  margin-right:5px;
-	  margin-left:5px;
-	  margin-bottom:5px;
-	  float: left;
-	}
-
-	@media(max-width: 300px)
-	{
-	  .well { margin : 0}
-	}
+		@media(max-width: 300px)
+		{
+		  .well { margin : 0}
+		}
 	</style>
 	<script src="./script.js"></script>
 </head>
@@ -56,9 +50,7 @@
 		<day-timepicker name="Sun" id="sun" ></day-timepicker>
   </div>
 	<div class="container well">
-	  <div class="container well">
-	    <div id='calendar'></div>
-	  </div>
+		<cal-hours></cal-hours>
 	</div>
   <br>
 	<div class="container well">

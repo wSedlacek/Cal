@@ -1,29 +1,5 @@
 //jquery
 $(document).ready(function() {
-
-  //Full Calendar
-	$('#calendar').fullCalendar({
-		editable: false,
-		handleWindowResize: true,
-		defaultView: 'agendaWeek',
-		displayEventTime: false,
-		allDaySlot: false,
-		firstDay: 1
-	});
-
-  //Time Picker
-  //Mon
-	$('input.timepicker').bootstrapMaterialDatePicker ({
-	  date: false,
-	  shortTime: true,
-	  format: 'h:mm a'
-	});
-
-	$('input.timepicker').change(function(){
-		var thisId = jQuery(this).attr("id");
-    pendHours(thisId);
-	});
-
 	$.material.init()
 });
 
@@ -53,7 +29,7 @@ function pendHours(elementId) {
 	startTime = (startTime.split(" ", 2))[0];
 	var startHour = Number((startTime.split(":", 2))[0]);
 	var startMin = Number((startTime.split(":", 2))[1]);
-	if (startAmOrPm == "pm") {
+	if (startAmOrPm == "pm" && startHour < 12) {
 		startHour +=12;
 		startTime = startHour + ":" + startMin
 	}
@@ -62,7 +38,7 @@ function pendHours(elementId) {
 	endTime = (endTime.split(" ", 2))[0];
 	var endHour = Number((endTime.split(":", 2))[0]);
 	var endMin = Number((endTime.split(":", 2))[1]);
-	if (endAmOrPm == "pm") {
+	if (endAmOrPm == "pm" && endHour < 12) {
 		endHour +=12;
 		endTime = endHour + ":" + endMin
 	}

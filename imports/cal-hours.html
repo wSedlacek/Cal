@@ -1,0 +1,42 @@
+<link href='../bower_components/fullcalendar/dist/fullcalendar.min.css' rel='stylesheet' />
+<link href='../bower_components/fullcalendar/dist/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+
+<script src='../bower_components/moment/min/moment.min.js'></script>
+<script src='../bower_components/fullcalendar/dist/fullcalendar.min.js'></script>
+
+<template id="cal-temp">
+  <style>
+    #calendar {
+  	  max-width: 100%;
+  	  margin: 0 auto;
+  	}
+  </style>
+  <div class="container well">
+    <div id='calendar'></div>
+  </div>
+</template>
+
+<script>
+  (function() {
+    var importDoc = document.currentScript.ownerDocument; // importee
+    var proto = Object.create(HTMLElement.prototype, {
+      createdCallback: {
+        value: function() {
+          var t = importDoc.querySelector('#cal-temp');
+          var clone = document.importNode(t.content, true);
+          this.appendChild(clone);
+        }
+      }
+    });
+    document.registerElement('cal-hours', {prototype: proto});
+
+    $('#calendar').fullCalendar({
+  		editable: false,
+  		handleWindowResize: true,
+  		defaultView: 'agendaWeek',
+  		displayEventTime: false,
+  		allDaySlot: false,
+  		firstDay: 1
+  	});
+  })();
+</script>

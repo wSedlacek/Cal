@@ -286,6 +286,10 @@ function totalPendingHours(totalPen) {
 	document.getElementById("def-hours-pen").innerHTML = "Pending: " + totalPen;
 }
 
+function clearTime(id) {
+	alert(id+"wants to be cleared");
+}
+
 function showHideOvr(weekDayOvr) {
 	var enabled = document.getElementById("chk-"+ weekDayOvr).checked;
 	var ovrday = document.getElementById("ovr-" + weekDayOvr);

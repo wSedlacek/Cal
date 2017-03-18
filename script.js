@@ -86,7 +86,7 @@ function generateStartDay(curDay, curWeekDay, shiftWeekDay) {
 					break;
 				case "sat":
 					shiftDay = curDay + 5;shiftDay
-			break;
+			} break;
 		case "Tue":
 			switch (shiftWeekDay) {
 				case "mon":
@@ -110,8 +110,7 @@ function generateStartDay(curDay, curWeekDay, shiftWeekDay) {
 				case "sun":
 					shiftDay = curDay + 5;
 					break;
-			}
-			break;
+			} break;
 		case "Wed":
 			switch (shiftWeekDay) {
 				case "mon":
@@ -135,8 +134,7 @@ function generateStartDay(curDay, curWeekDay, shiftWeekDay) {
 				case "sun":
 					shiftDay = curDay + 4;
 					break;
-			}
-			break;
+			} break;
 		case "Thr":
 			switch (shiftWeekDay) {
 				case "mon":
@@ -160,8 +158,7 @@ function generateStartDay(curDay, curWeekDay, shiftWeekDay) {
 				case "sun":
 					shiftDay = curDay + 3;
 					break;
-			}
-			break;
+			} break;
 		case "Fri":
 			switch (shiftWeekDay) {
 				case "mon":
@@ -185,8 +182,7 @@ function generateStartDay(curDay, curWeekDay, shiftWeekDay) {
 				case "sun":
 					shiftDay = curDay + 2;
 					break;
-			}
-			break;
+			} break;
 		case "Sat":
 			switch (shiftWeekDay) {
 				case "mon":
@@ -210,8 +206,7 @@ function generateStartDay(curDay, curWeekDay, shiftWeekDay) {
 				case "sun":
 					shiftDay = curDay + 1;
 					break;
-			}
-			break;
+			} break;
 		case "Sun":
 			switch (shiftWeekDay) {
 				case "mon":
@@ -235,8 +230,7 @@ function generateStartDay(curDay, curWeekDay, shiftWeekDay) {
 				case "sun":
 					shiftDay = curDay;
 					break;
-			}
-			break;
+			} break;
 	}
 	return shiftDay;
 }

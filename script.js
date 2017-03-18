@@ -92,7 +92,8 @@ $(document).ready(function() {
 
 	$('input.timepicker').change(function(){
 		var thisId = jQuery(this).attr("id");
-    addEventTest(thisID);
+		value = document.getElementById(thisId);
+    addEventTest(value);
 	});
 
 	$("#time-mon-start").change(function(){

@@ -82,6 +82,7 @@ function addCalEvent(startHour, startMin, endHour, endMin, day) {
 						startDay = curDay + 6;
 						break;
 				}
+				break;
 			case "Tue":
 				switch (day) {
 					case "mon":
@@ -106,6 +107,7 @@ function addCalEvent(startHour, startMin, endHour, endMin, day) {
 						startDay = curDay + 5;
 						break;
 				}
+				break;
 			case "Wed":
 				switch (day) {
 					case "mon":
@@ -130,6 +132,7 @@ function addCalEvent(startHour, startMin, endHour, endMin, day) {
 						startDay = curDay + 4;
 						break;
 				}
+				break;
 			case "Thr":
 				switch (day) {
 					case "mon":
@@ -154,6 +157,7 @@ function addCalEvent(startHour, startMin, endHour, endMin, day) {
 						startDay = curDay + 3;
 						break;
 				}
+				break;
 			case "Fri":
 				switch (day) {
 					case "mon":
@@ -178,6 +182,7 @@ function addCalEvent(startHour, startMin, endHour, endMin, day) {
 						startDay = curDay + 2;
 						break;
 				}
+				break;
 			case "Sat":
 				switch (day) {
 					case "mon":
@@ -202,6 +207,7 @@ function addCalEvent(startHour, startMin, endHour, endMin, day) {
 						startDay = curDay + 1;
 						break;
 				}
+				break;
 			case "Sun":
 				switch (day) {
 					case "mon":
@@ -226,6 +232,7 @@ function addCalEvent(startHour, startMin, endHour, endMin, day) {
 						startDay = curDay;
 						break;
 				}
+				break;
 		}
 		newEvent.start.setDate(startDay);
 		newEvent.end.setDate(startDay);

@@ -13,140 +13,110 @@ $(document).ready(function() {
 
   //Time Picker
   //Mon
-	$('#time-mon-start').bootstrapMaterialDatePicker
-  ({
+	$('#time-mon-start').bootstrapMaterialDatePicker ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
-  });
-  $("#time-mon-start").change(function(){
-    
-  });
-	$('#time-mon-end').bootstrapMaterialDatePicker
-  ({
+	});
+	$('#time-mon-end').bootstrapMaterialDatePicker ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
-  });
-  $("#time-end-start").change(function(){
-    
-  });
-  //Tue
-	$('#time-tue-start').bootstrapMaterialDatePicker
-  ({
+	});
+	//Tue
+	$('#time-tue-start').bootstrapMaterialDatePicker ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
-  });
-  $("#time-tue-start").change(function(){
-    
-  });
-	$('#time-tue-end').bootstrapMaterialDatePicker
-  ({
+	});
+	$('#time-tue-end').bootstrapMaterialDatePicker ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
-  });
-  //Wed
-	$('#time-wed-start').bootstrapMaterialDatePicker
-  ({
+	});
+	//Wed
+	$('#time-wed-start').bootstrapMaterialDatePicker ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
-  });
-  $("#time-wed-start").change(function(){
-    
-  });
-	$('#time-wed-end').bootstrapMaterialDatePicker
-  ({
+	});
+	$('#time-wed-end').bootstrapMaterialDatePicker ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
-  });
-  //Thr
-	$('#time-thr-start').bootstrapMaterialDatePicker
-  ({
+	});
+	//Thr
+	$('#time-thr-start').bootstrapMaterialDatePicker ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
-  });
-  $("#time-thr-start").change(function(){
-    
-  });
-	$('#time-thr-end').bootstrapMaterialDatePicker
-  ({
+	});
+	$('#time-thr-end').bootstrapMaterialDatePicker ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
-  });
-  //Fri
-	$('#time-fri-start').bootstrapMaterialDatePicker
-  ({
+	});
+	//Fri
+	$('#time-fri-start').bootstrapMaterialDatePicker ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
-  });
-  $("#time-fri-start").change(function(){
-    
-  });
-	$('#time-fri-end').bootstrapMaterialDatePicker
-  ({
+	});
+	$('#time-fri-end').bootstrapMaterialDatePicker ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
-  });
-  //Sat
-	$('#time-sat-start').bootstrapMaterialDatePicker
-  ({
+	});
+	//Sat
+	$('#time-sat-start').bootstrapMaterialDatePicker ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
-  });
-  $("#time-sat-start").change(function(){
-    
-  });
-	$('#time-sat-end').bootstrapMaterialDatePicker
-  ({
+	});
+	$('#time-sat-end').bootstrapMaterialDatePicker ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
-  });
-  //Sun
-	$('#time-sun-start').bootstrapMaterialDatePicker
-  ({
+	});
+	//Sun
+	$('#time-sun-start').bootstrapMaterialDatePicker ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
-  });
-  $("#time-sun-start").change(function(){
-    
-  });
-	$('#time-sun-end').bootstrapMaterialDatePicker
-  ({
+	});
+	$('#time-sun-end').bootstrapMaterialDatePicker ({
 	  date: false,
 	  shortTime: true,
 	  format: 'h:mm a'
-  });
-  
-  $.material.init()
+	});
+
+	$('input.timepicker').change(function(){
+		alert("THIS WAS RUN");
+	});
+
+	$("#time-mon-start").change(function(){
+
+	});
+
+	$.material.init()
 });
 
 function addEvent() {
     var startdrop = document.getElementById("#time-mon-start");
     var starthour = Number();
-    
+
     var enddrop = document.getElementById("#time-mon-end");
     var endhour = Number();
-    
+
     if (starthour > endhour) {
       console.log(starthour + " " + endhour);
       endhour = starthour + 1;
       enddrop.value = endhour;
     }
-    
+
     var total = endhour - starthour;
     document.getElementById("totalhours").innerHTML = "Total: " + total;
-    
+
     var newEvent = new Object();
 
     newEvent.title = "Avilable hours";

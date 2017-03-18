@@ -10,8 +10,9 @@
 
     <link rel="import" href='./imports/fonts.html' />
     <link rel="import" href='./imports/material.html' />
-		<link rel="import" href='./imports/timepicker.html' />
 		<link rel="import" href='./imports/fullcalendar.html' />
+
+		<link rel="import" href='./imports/days/imports.html' />
 
 		<link rel='./style.css' rel='stylesheet' media='print' />
 		<style>
@@ -69,15 +70,7 @@ div.total {
   <div class="container well">
     <h1> Default Availity </h1>
     <div>
-			<template id="timepicker-temp">
-			  <div class="container well days">
-			    <div class="form-control-wrapper day">
-			      <h3 class="weekday"> </h3>
-			      <input type="text" id="time-start" class="form-control floating-label timepicker" placeholder="Start">
-			      <input type="text" id="time-end" class="form-control floating-label timepicker" placeholder="End">
-			    </div>
-			  </div>
-			</template>
+			<link rel="import" href="./imports/days/template.html">
     </div>
   </div>
 	<div class="container well">
@@ -105,28 +98,5 @@ div.total {
       </div>
     </div>
   </div>
-	<script>
-		var weekdays = [
-			{ name:"Monday",    abv:"Mon", id:"mon" },
-			{ name:"Tuesday",   abv:"Tue", id:"tue" },
-			{ name:"Wednesday", abv:"Wed", id:"wed" },
-			{ name:"Thrusday",  abv:"Thr", id:"thr" },
-			{ name:"Friday",    abv:"Fri", id:"fri" },
-			{ name:"Saturday",  abv:"Sat", id:"sat" },
-			{ name:"Sunday",    abv:"Sun", id:"sun" },
-		];
-
-		var temp = document.querySelector('#timepicker-temp');
-		for (var i = 0; i < weekdays.length; i++) {
-			var day = weekdays[i];
-			var clone = temp.content.cloneNode(true);
-			var h3 = clone.querySelectorAll('h3');
-			h3[0].innerHTML= day.abv;
-			var input = clone.querySelectorAll('input');
-			input[0].id = "time-"+day.id+"-start";
-			input[1].id = "time-"+day.id+"-end";
-			temp.parentNode.appendChild(clone);
-		}
-	</script>
 </body>
 </html>

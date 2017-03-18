@@ -21,9 +21,6 @@
 		@media(max-width: 300px) {
 		  .well { margin : 0}
 		}
-		#break{
-			clear:both;
-		}
 	</style>
 </head>
 
@@ -59,9 +56,7 @@
 		<override-checkbox label="Fri" day="fri"></override-checkbox>
 		<override-checkbox label="Sat" day="sat"></override-checkbox>
 		<override-checkbox label="Sun" day="sun"></override-checkbox>
-		<div class="break">
-			<br>
-		</div>
+		<div style="clear:both;"> <br style="clear:both;"> </div>
     <day-timepicker style="display:none" name="Mon" id="ovr-mon"></day-timepicker>
 		<day-timepicker style="display:none" name="Tue" id="ovr-tue"></day-timepicker>
 		<day-timepicker style="display:none" name="Wed" id="ovr-wed"></day-timepicker>

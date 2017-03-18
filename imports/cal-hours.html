@@ -28,15 +28,17 @@
         }
       }
     });
-    document.registerElement('cal-hours', {prototype: proto});
 
-    $('#calendar').fullCalendar({
-  		editable: false,
-  		handleWindowResize: true,
-  		defaultView: 'agendaWeek',
-  		displayEventTime: false,
-  		allDaySlot: false,
-  		firstDay: 1
-  	});
+    document.registerElement('cal-hours', {prototype: proto});
+    $(document).ready(function() {
+      $('#calendar').fullCalendar({
+    		editable: false,
+    		handleWindowResize: true,
+    		defaultView: 'agendaWeek',
+    		displayEventTime: false,
+    		allDaySlot: false,
+    		firstDay: 1
+    	});
+    });
   })();
 </script>

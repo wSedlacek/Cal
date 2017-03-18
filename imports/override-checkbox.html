@@ -26,7 +26,7 @@
           var input = clone.querySelectorAll('input');
           day = this.getAttribute('day');
           input[0].id = "chk-" + day
-          input[0].onchange = function(){showHideOvr(day);};
+          input[0].onchange = function(){showHideOvr('mon');};
           this.appendChild(clone);
         }
       }

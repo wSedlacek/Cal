@@ -45,8 +45,8 @@
           var h3 = clone.querySelectorAll('h3');
           h3[0].innerHTML= this.getAttribute('name');
           var input = clone.querySelectorAll('input');
-          input[0].id = "time-" + this.getAttribute('id') + "-start";
-          input[1].id = "time-" + this.getAttribute('id') + "-end";
+          input[0].id = this.getAttribute('type-id') + this.getAttribute('day-id') + "-start";
+          input[1].id = this.getAttribute('type-id') + this.getAttribute('day-id') + "-end";
           this.appendChild(clone);
         }
       }

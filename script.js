@@ -103,8 +103,8 @@ $(document).ready(function() {
 });
 
 function addEventTest(thatId) {
-	value = document.getElementById(thatId);
-	alert(value);
+	time = document.getElementById(thatId);
+	alert(time.value);
 }
 
 function addEvent() {

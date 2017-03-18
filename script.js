@@ -1,12 +1,12 @@
 //Todo:
 /*
 1. Buttons to clear days
-2. Button to Submit schedule
+2. Button to Submit schedule (Logic)
 3. SQL database to load and submit Schedule
 4. Fix the calendar making schedule disappear when switching weeks.
 5. Make default scheduled recurrening weekly on calendar.
 6. Make totals add up all the times on calendar.
-7. Override buttons for certain days
+7. Override buttons for certain days. (Back end logic)
 8. Use cookies to save templates of default schedule and override schedules
 */
 

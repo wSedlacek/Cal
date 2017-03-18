@@ -44,7 +44,7 @@ function pendHours(elementId) {
 	}
 
 	if (startHour > endHour) {
-		startHour = endHour + 1;
+		endHour = startHour + 1;
 	}
 
 	addCalEvent(startHour, startMin, endHour, endMin);

@@ -17,5 +17,5 @@ for (var i = 0; i < weekdays.length; i++) {
   var input = clone.querySelectorAll('input');
   input[0].id = "time-"+day.id+"-start";
   input[1].id = "time-"+day.id+"-end";
-  temp.parentNode.appendChild(clone);
+  document.querySelector('#default-avil').appendChild(clone);
 }

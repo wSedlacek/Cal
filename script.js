@@ -85,7 +85,7 @@ function addPendingShift(shift) {
 	shiftEvent.start.setHours(shift.startHour,shift.startMin,0,0);
 	shiftEvent.end.setHours(shift.endHour,shift.endMin,0,0);
 	shiftEvent.allDay = false;
-	shiftEvenet.color = "#C2185B"
+	shiftEvent.color = "#C2185B"
 	addCalEvent(shiftEvent);
 }
 

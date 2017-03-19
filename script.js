@@ -395,8 +395,8 @@ function totalHours(shift, text, id) {
 function clearTime(id) {
 	start = document.getElementById(id+"-start");
 	end = document.getElementById(id+"-end");
-	start.reset();
-	end.reset();
+	setTimePickerValue(start, "")
+	setTimePickerValue(end, "")
 
 	idArr = id.split("-",2);
 	weekDay = idArr[1];

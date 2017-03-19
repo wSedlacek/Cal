@@ -138,7 +138,7 @@ function hourUp(time){
 	}
 }
 
-function parseTime24ToString() {
+function parseTime24ToString(time) {
 	time.time24 = time.hour24 + ":" + time.min;
 }
 

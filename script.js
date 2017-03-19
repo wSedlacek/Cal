@@ -142,10 +142,12 @@ function hourUp(time){
 }
 
 function parseTime24ToString(time) {
+	time.min = (time.min < 10 ? '0' : '') + time.min;
 	time.time24 = time.hour24 + ":" + time.min;
 }
 
 function parseTimeToString(time) {
+	time.min = (time.min < 10 ? '0' : '') + time.min;
 	time.timeString = time.hour + ":" + time.min + " " + time.amOrPm;
 }
 

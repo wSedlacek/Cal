@@ -10,10 +10,13 @@
 8. Use cookies to save templates of default schedule and override schedules
 */
 
+var totalPenHours;
+var totalCurHours;
+
 function pendShift(elementId) {
 	shift = pharseShift(elementId);
 	addPendingShift(shift);
-	totalPendingHours(shift.endHour - shift.startHour);
+	totalPendingHours(shift);
 }
 
 function pharseShift(elementId) {
@@ -67,6 +70,7 @@ function parseTimeToObj(time, linar) {
 	time.hour = Number((time.time.split(":", 2))[0]);
 	time.min = Number((time.time.split(":", 2))[1]);
 	convertTo24(time);
+	correctMin(time);
 }
 
 function convertTo24(time) {
@@ -82,6 +86,18 @@ function convertTo24(time) {
 	time.time = parseTimeToString(time.hour, time.min);
 }
 
+function correctMin(time) {
+	if (time.min != 0 && time.min != 30) {
+		alert("Shifts work in 30 min increments. Your selected time will be rounded to the next 30 minute mark.");
+		if (time.min < 30) {
+			time.min = 30;
+		} else {
+			time.hour++;
+			time.min = 0;
+		}
+	}
+}
+
 function parseTimeToString(hour, min) {
 	return hour + ":" + min;
 }
@@ -93,10 +109,17 @@ function ensureLinarity(start, end, hoursToAdd) {
 }
 
 function addPendingShift(shift) {
+	var text = "Pending Changes";
+	var id = shift.weekDay + "-pending";
+	var color = "#C2185B";
+	addShift(shift, text, id, color)
+}
+
+function addShift(shfit, text, id, color) {
 	var shiftEvent = new Object();
 
-	shiftEvent.title = "Pending Changes";
-	shiftEvent.id = shift.weekDay + "-pending";
+	shiftEvent.title = text;
+	shiftEvent.id = id;
 	shiftEvent.start = new Date();
 	shiftEvent.end = new Date();
 	shiftEvent.start.setDate(shift.day);
@@ -104,11 +127,12 @@ function addPendingShift(shift) {
 	shiftEvent.start.setHours(shift.startHour,shift.startMin,0,0);
 	shiftEvent.end.setHours(shift.endHour,shift.endMin,0,0);
 	shiftEvent.allDay = false;
-	shiftEvent.color = "#C2185B"
+	shiftEvent.color = color;
 	addCalEvent(shiftEvent);
 }
 
 function addCalEvent(shiftEvent) {
+		//return if any events were removed and if so how many hours (for totaling)
     $('#calendar').fullCalendar('removeEvents', shiftEvent.id);
     $('#calendar').fullCalendar( 'renderEvent', shiftEvent );
 }
@@ -118,6 +142,7 @@ function generateDay(shiftWeekDay) {
 	var curDay = Number((String(curDate).split(" ", 4))[2]);
 	var curWeekDay = (String(curDate).split(" ", 2))[0];
 	var shiftDay;
+	//This switch probably need to be simplified
 	switch (curWeekDay) {
 		case "Mon":
 			switch (shiftWeekDay) {
@@ -287,23 +312,30 @@ function generateDay(shiftWeekDay) {
 	return shiftDay;
 }
 
-function totalCurrentHours(totalCur) {
-	totalHours(totalCur, "def-hours-cur");
+function totalCurrentHours(shift) {
+	totalCurHours = shift.endHour - shift.startHour;
+	//add code to get hours from all shifts that match the event id (pen or cur)
+	totalHours(totalCurHours, "Current: ", "def-hours-cur");
 }
 
 function totalPendingHours(totalPen) {
-	totalHours(totalPen, "def-hours-pen");
+	totalPenHours = shift.endHour - shift.startHour;
+	//add code to get hours from all shifts that match the event id (pen or cur)
+	//give warnings about requested hours
+	totalHours(totalPenHours, "Pending: ", "def-hours-pen");
 }
 
-function totalHours(total, id) {
-	document.getElementById(id).innerHTML = "Pending: " + total;
+function totalHours(total, text, id) {
+	document.getElementById(id).innerHTML = text + total;
 }
 
 function clearTime(id) {
+	//Add code to clear out the boxes that match the id.
 	alert(id+" wants to be cleared!");
 }
 
 function showHideOvr(weekDayOvr) {
+	//Fix alignment to center like the def
 	var enabled = document.getElementById("chk-"+ weekDayOvr).checked;
 	var ovrday = document.getElementById("ovr-" + weekDayOvr);
 	if (enabled) {

@@ -296,7 +296,7 @@ function totalPendingHours(totalPen) {
 }
 
 function totalHours(total, id) {
-	document.getElementById(id).innerHTML = "Pending: " + totalPen;
+	document.getElementById(id).innerHTML = "Pending: " + total;
 }
 
 function clearTime(id) {

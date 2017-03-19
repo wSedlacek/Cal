@@ -35,7 +35,7 @@ function pharseShift(elementId) {
 	return shift;
 }
 
-parseStartAndEnd(elementId, start, end) {
+function parseStartAndEnd(elementId, start, end) {
 	var element = new Object();
 	element.id = elementId;
 	element.arr = element.id.split("-",3);
@@ -56,7 +56,7 @@ parseStartAndEnd(elementId, start, end) {
 	parseTimeToObj(end, "end");
 }
 
-parseTimeToObj(time, linar) {
+function parseTimeToObj(time, linar) {
 	start.linar = linar;
 	time.type = element.arr[0];
 	time.weekDay = time.arr[1];
@@ -69,7 +69,7 @@ parseTimeToObj(time, linar) {
 	convertTo24(time);
 }
 
-convertTo24(time) {
+function convertTo24(time) {
 	if (time.amOrPm == "pm" && time.hour < 12) {
 		time.hour +=12;
 	} else if (time.amOrPm == "am" && time.hour == 12) {
@@ -82,11 +82,11 @@ convertTo24(time) {
 	time.time = parseTimeToString(time.hour, time.min);
 }
 
-parseTimeToString(hour, min) {
+function parseTimeToString(hour, min) {
 	return hour + ":" + min;
 }
 
-ensureLinarity(start, end, hoursToAdd) {
+function ensureLinarity(start, end, hoursToAdd) {
 	if (start.hour > end.hour) {
 		end.hour = start.hour + hoursToAdd;
 	}

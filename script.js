@@ -70,8 +70,8 @@ function parseStartAndEnd(elementId, start, end) {
 }
 
 function setTimePickerValue(time) {
-	alert(time.element + " set value to " + time.time);
-	time.element.value = time.time;
+	alert(time.element + " set value to " + time.timeString);
+	time.element.value = time.timeString;
 }
 
 function parseTimeToObj(time, linar) {
@@ -80,9 +80,9 @@ function parseTimeToObj(time, linar) {
 	time.weekDay = time.elementArr[1];
 	time.day = generateDay(time.weekDay);
 	time.element = document.getElementById(time.elementId);
-	time.time = time.element.value;
+	time.timeString = time.element.value;
 	time.amOrPm = (time.time.split(" ", 2))[1];
-	time.time = (time.time.split(" ", 2))[0];
+	time.time = (time.timeString.split(" ", 2))[0];
 	time.hour = Number((time.time.split(":", 2))[0]);
 	time.min = Number((time.time.split(":", 2))[1]);
 	time.corrected = false;
@@ -122,6 +122,8 @@ function correctMin(time) {
 				time.min = 30;
 			}
 		}
+		parseTimeToString(time);
+		parseTime24ToString(time);
 	}
 }
 
@@ -144,7 +146,7 @@ function parseTime24ToString(time) {
 }
 
 function parseTimeToString(time) {
-	return time.hour + ":" + time.min + " " + time.amOrPm;
+	time.timeString + ":" + time.min + " " + time.amOrPm;
 }
 
 function ensureLinarity(start, end) {

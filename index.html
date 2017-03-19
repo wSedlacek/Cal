@@ -21,7 +21,7 @@
     div.centered {
       text-align: center;
     }
-    day-timepicker {
+    day-timepicker, total-hours {
       text-align: left;
       display:inline-block;
       margin:10px 10px;
@@ -88,8 +88,10 @@
   </div>
   <div class="container well">
     <h1> Totals </h1>
-    <total-hours name="Default" id="def"></total-hours>
-    <total-hours name="Selected Week" id="this"></total-hours>
+    <div class="centered">
+      <total-hours name="Default" id="def"></total-hours>
+      <total-hours name="Selected Week" id="this"></total-hours>
+    </div>
   </div>
   <br>
   <div class="container well">

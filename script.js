@@ -394,7 +394,7 @@ function totalHours(shift, text, id) {
 function clearAll(type) {
   var dayIds = ["mon","tue","wed","thr","fri","sat","sun"];
   for (id in dayIds) {
-    clearTime(type+id)
+    clearTime(type+"-"+id)
   }
 }
 

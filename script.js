@@ -81,7 +81,7 @@ function parseTimeToObj(time, linar) {
 	time.day = generateDay(time.weekDay);
 	time.element = document.getElementById(time.elementId);
 	time.timeString = time.element.value;
-	time.amOrPm = (time.time.split(" ", 2))[1];
+	time.amOrPm = (time.timeString.split(" ", 2))[1];
 	time.time = (time.timeString.split(" ", 2))[0];
 	time.hour = Number((time.time.split(":", 2))[0]);
 	time.min = Number((time.time.split(":", 2))[1]);

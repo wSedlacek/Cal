@@ -18,6 +18,8 @@ function pendShift(elementId) {
 	if (shift.valid) {
 		addPendingShift(shift);
 		totalPendingHours(shift);
+	} else {
+		removePendingShift(shift);
 	}
 }
 
@@ -27,18 +29,14 @@ function pharseShift(elementId) {
 	var shift = new Object();
 
 	parseStartAndEnd(elementId, start, end);
-	if (ensureLinarity(start, end)) {
-		shift.startHour = start.hour;
-		shift.endHour = end.hour;
-		shift.startMin = start.min;
-		shift.endMin = end.min;
-		shift.weekDay = start.weekDay;
-		shift.day = start.day;
-		shift.type = start.type;
-		shift.valid = true;
-	} else {
-		shift.valid = false;
-	}
+	shift.valid = ensureLinarity(start, end);
+	shift.startHour = start.hour;
+	shift.endHour = end.hour;
+	shift.startMin = start.min;
+	shift.endMin = end.min;
+	shift.weekDay = start.weekDay;
+	shift.day = start.day;
+	shift.type = start.type;
 	return shift;
 }
 
@@ -138,6 +136,11 @@ function addPendingShift(shift) {
 	addShift(shift, text, id, color)
 }
 
+function removePendingShift(shift) {
+	var id = shift.weekDay + "-pending";
+	removeCalEvent(id);
+}
+
 function addShift(shfit, text, id, color) {
 	var shiftEvent = new Object();
 
@@ -151,13 +154,17 @@ function addShift(shfit, text, id, color) {
 	shiftEvent.end.setHours(shift.endHour,shift.endMin,0,0);
 	shiftEvent.allDay = false;
 	shiftEvent.color = color;
+  removeCalEvent(shiftEvent.id);
 	addCalEvent(shiftEvent);
 }
 
 function addCalEvent(shiftEvent) {
-		//return if any events were removed and if so how many hours (for totaling)
-    $('#calendar').fullCalendar('removeEvents', shiftEvent.id);
     $('#calendar').fullCalendar( 'renderEvent', shiftEvent );
+}
+
+function removeCalEvent(id) {
+	//return if any events were removed and if so how many hours (for totaling)
+  $('#calendar').fullCalendar('removeEvents', id);
 }
 
 function generateDay(shiftWeekDay) {
@@ -336,20 +343,19 @@ function generateDay(shiftWeekDay) {
 }
 
 function totalCurrentHours(shift) {
-	totalCurHours = shift.endHour - shift.startHour;
-	//add code to get hours from all shifts that match the event id (pen or cur)
-	totalHours(totalCurHours, "Current: ", "def-hours-cur");
+	totalCurHours = totalHours(totalCurHours, "Current: ", "def-hours-cur");
 }
 
-function totalPendingHours(totalPen) {
-	totalPenHours = shift.endHour - shift.startHour;
+function totalPendingHours(shift) {
+	totalPenHours = totalHours(shift, "Pending: ", "def-hours-pen");
+}
+
+function totalHours(shift, text, id) {
 	//add code to get hours from all shifts that match the event id (pen or cur)
 	//give warnings about requested hours
-	totalHours(totalPenHours, "Pending: ", "def-hours-pen");
-}
-
-function totalHours(total, text, id) {
+	var total = (shift.endHour - shift.startHour) + ((shift.endMin/60) - (shift.startMin/60));
 	document.getElementById(id).innerHTML = text + total;
+	return total;
 }
 
 function clearTime(id) {

@@ -57,7 +57,7 @@ function parseStartAndEnd(elementId, start, end) {
 }
 
 function parseTimeToObj(time, linar) {
-	start.linar = linar;
+	time.linar = linar;
 	time.type = element.arr[0];
 	time.weekDay = time.arr[1];
 	time.day = generateDay(weekDay);

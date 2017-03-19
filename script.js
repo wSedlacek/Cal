@@ -399,7 +399,6 @@ function clearAll(type) {
 }
 
 function clearTime(id) {
-	alert(id);
   start = document.getElementById(id+"-start");
   end = document.getElementById(id+"-end");
   setTimePickerValue(start, "")

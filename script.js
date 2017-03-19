@@ -8,7 +8,6 @@
 6. Make totals add up all the times on calendar.
 7. Override buttons for certain days. (Back end logic)
 8. Use cookies to save templates of default schedule and override schedules
-9. Create methode to set time on day-timepickers
 */
 
 var totalPenHours;
@@ -59,10 +58,10 @@ function parseStartAndEnd(elementId, start, end) {
 	}
 	parseTimeToObj(start, "start");
 	parseTimeToObj(end, "end");
-	if (start.corrected || end.corrected) {
+	if ((start.corrected && start.valid) || (end.corrected && end.valid)) {
 		alert("Shifts work in 30 min increments. Your selected time will be rounded to the next 30 minute mark.");
-		if (start.corrected) setTimePickerValue(start);
-		if (end.corrected) setTimePickerValue(end);
+		if (start.corrected && start.valid) setTimePickerValue(start);
+		if (end.corrected && end.valid) setTimePickerValue(end);
 	}
 	if (start.hour24 >= 23 || end.hour24 <= 2) {
 		alert("Please try to select more aviablity.")
@@ -70,7 +69,6 @@ function parseStartAndEnd(elementId, start, end) {
 }
 
 function setTimePickerValue(time) {
-	alert(time.element + " set value to " + time.timeString);
 	time.element.value = time.timeString;
 }
 
@@ -86,8 +84,13 @@ function parseTimeToObj(time, linar) {
 	time.hour = Number((time.time.split(":", 2))[0]);
 	time.min = Number((time.time.split(":", 2))[1]);
 	time.corrected = false;
-	pharse24(time);
-	correctMin(time);
+	if (amOrPm == "am" || amOrPm == "pm") {
+		time.valid = true;
+		pharse24(time);
+		correctMin(time);
+	} else {
+		time.valid = false;
+	}
 }
 
 function pharse24(time) {
@@ -152,14 +155,16 @@ function parseTimeToString(time) {
 }
 
 function ensureLinarity(start, end) {
-	if ((start.hour24 > end.hour24) || (start.hour24 == end.hour24 && start.min > end.min)) {
-		alert("ERR: Timetravel Required - The start of your shift must occur before the end.");
-		return false;
-	} else	if (start.hour24 == end.hour24 && start.min == end.min) {
-		alert("ERR: Linarity - This day has no aviablity set on this day.")
-		return false
+	if (start.valid && end.valid) {
+		if ((start.hour24 > end.hour24) || (start.hour24 == end.hour24 && start.min > end.min)) {
+			alert("ERR: Timetravel Required - The start of your shift must occur before the end.");
+			return false;
+		} else	if (start.hour24 == end.hour24 && start.min == end.min) {
+			alert("ERR: Linarity - This day has no aviablity set on this day.")
+			return false
+		}
 	}
-	return true;
+	return true && start.valid && end.valid;
 }
 
 function addPendingShift(shift) {

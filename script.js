@@ -84,7 +84,7 @@ function parseTimeToObj(time, linar) {
 	time.hour = Number((time.time.split(":", 2))[0]);
 	time.min = Number((time.time.split(":", 2))[1]);
 	time.corrected = false;
-	if (amOrPm == "am" || amOrPm == "pm") {
+	if (time.amOrPm == "am" || time.amOrPm == "pm") {
 		time.valid = true;
 		pharse24(time);
 		correctMin(time);

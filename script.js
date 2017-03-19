@@ -121,10 +121,10 @@ function parseTimeToString(hour, min) {
 }
 
 function ensureLinarity(start, end) {
-	if (start.hour > end.hour) {
+	if ((start.hour > end.hour) || (start.hour == end.hour && start.min > end.min)) {
 		alert("ERR: Timetravel Required - The start of your shift must occur before the end.");
 		return false;
-	} else if (start.hour == end.hour && start.min == end.min) {
+	} else	if (start.hour == end.hour && start.min == end.min) {
 		alert("ERR: Linarity - This day has no aviablity set on this day.")
 		return false
 	}

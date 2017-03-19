@@ -11,7 +11,7 @@
         value: function() {
           var t = importDoc.querySelector('#user-temp');
           var clone = document.importNode(t.content, true);
-          var h = clone.querySelectorAll('h');
+          var h1 = clone.querySelectorAll('h1');
           h[0].innerHTML = "Hello User: " + checkUser();
           this.appendChild(clone);
         }

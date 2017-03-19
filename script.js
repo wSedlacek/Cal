@@ -60,7 +60,7 @@ function parseTimeToObj(time, linar) {
 	time.linar = linar;
 	time.type = time.elementArr[0];
 	time.weekDay = time.elementArr[1];
-	time.day = generateDay(weekDay);
+	time.day = generateDay(time.weekDay);
 	time.time = (document.getElementById(time.elementId)).value;
 	time.amOrPm = (start.time.split(" ", 2))[1];
 	time.time = (start.time.split(" ", 2))[0];

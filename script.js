@@ -15,26 +15,30 @@ var totalCurHours;
 
 function pendShift(elementId) {
 	shift = pharseShift(elementId);
-	addPendingShift(shift);
-	totalPendingHours(shift);
+	if (shift) {
+		addPendingShift(shift);
+		totalPendingHours(shift);
+	}
 }
 
 function pharseShift(elementId) {
 	var start = new Object();
 	var end = new Object();
+	var shift = new Object();
 
 	parseStartAndEnd(elementId, start, end);
-	ensureLinarity(start, end, 2);
-
-	var shift = new Object();
-	shift.startHour = start.hour;
-	shift.endHour = end.hour;
-	shift.startMin = start.min;
-	shift.endMin = end.min;
-	shift.weekDay = start.weekDay;
-	shift.day = start.day;
-	shift.type = start.type;
-
+	if (ensureLinarity(start, end)) {
+		shift.startHour = start.hour;
+		shift.endHour = end.hour;
+		shift.startMin = start.min;
+		shift.endMin = end.min;
+		shift.weekDay = start.weekDay;
+		shift.day = start.day;
+		shift.type = start.type;
+		shift.valid = true;
+	} else {
+		shift.valid = false;
+	}
 	return shift;
 }
 
@@ -116,10 +120,15 @@ function parseTimeToString(hour, min) {
 	return hour + ":" + min;
 }
 
-function ensureLinarity(start, end, hoursToAdd) {
+function ensureLinarity(start, end) {
 	if (start.hour > end.hour) {
-		end.hour = start.hour + hoursToAdd;
+		alert("ERR: Timetravel Required - The start of your shift must occur before the end.");
+		return false;
+	} else if (start.hour = end.hour) {
+		alert("ERR: Linarity - This day has no aviablity set on this day.")
+		return false
 	}
+	return true;
 }
 
 function addPendingShift(shift) {

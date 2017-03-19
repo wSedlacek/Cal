@@ -95,7 +95,7 @@ function parseTimeToObj(time, linar) {
 
 function pharse24(time) {
 	if (time.amOrPm == "pm" && time.hour < 12) {
-		time.hour24 +=12;
+		time.hour24 = time.hour + 12;
 	} else if (time.amOrPm == "am" && time.hour == 12) {
 		if (time.linar == "start") {
 			time.hour24 = 0;

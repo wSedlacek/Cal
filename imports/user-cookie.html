@@ -1,5 +1,5 @@
 <template id="user-temp">
-  <h1 style="float:left; vertical-align: middle;">Hello User: ERROR</h1>
+  <h3 style="float:left; vertical-align: middle;">Hello User: ERROR</h3>
   <button style="float:right" type="button" class="btn btn-primary" onclick="userLogout()">Logout</button>
 </template>
 
@@ -11,8 +11,8 @@
         value: function() {
           var t = importDoc.querySelector('#user-temp');
           var clone = document.importNode(t.content, true);
-          var h1 = clone.querySelectorAll('h1');
-          h1[0].innerHTML = "Hello User: " + checkUser();
+          var h = clone.querySelectorAll('h3');
+          h[0].innerHTML = "Hello User: " + checkUser();
           this.appendChild(clone);
         }
       }

@@ -8,6 +8,7 @@
 6. Make totals add up all the times on calendar.
 7. Override buttons for certain days. (Back end logic)
 8. Use cookies to save templates of default schedule and override schedules
+9. Create methode to set time on day-timepickers
 */
 
 var totalPenHours;
@@ -30,8 +31,8 @@ function pharseShift(elementId) {
 
 	parseStartAndEnd(elementId, start, end);
 	shift.valid = ensureLinarity(start, end);
-	shift.startHour = start.hour;
-	shift.endHour = end.hour;
+	shift.startHour = start.hour24;
+	shift.endHour = end.hour24;
 	shift.startMin = start.min;
 	shift.endMin = end.min;
 	shift.weekDay = start.weekDay;
@@ -60,10 +61,16 @@ function parseStartAndEnd(elementId, start, end) {
 	parseTimeToObj(end, "end");
 	if (start.corrected || end.corrected) {
 		alert("Shifts work in 30 min increments. Your selected time will be rounded to the next 30 minute mark.");
+		if (start.corrected) setTimePickerValue(start);
+		if (end.corrected) setTimePickerValue(end);
 	}
-	if (start.hour >= 23 || end.hour <= 2) {
+	if (start.hour24 >= 23 || end.hour24 <= 2) {
 		alert("Please try to select more aviablity.")
 	}
+}
+
+function setTimePickerValue(time) {
+	time.element.value = time.time;
 }
 
 function parseTimeToObj(time, linar) {
@@ -71,27 +78,30 @@ function parseTimeToObj(time, linar) {
 	time.type = time.elementArr[0];
 	time.weekDay = time.elementArr[1];
 	time.day = generateDay(time.weekDay);
-	time.time = (document.getElementById(time.elementId)).value;
+	time.element = document.getElementById(time.elementId);
+	time.time = time.element.value;
 	time.amOrPm = (time.time.split(" ", 2))[1];
 	time.time = (time.time.split(" ", 2))[0];
 	time.hour = Number((time.time.split(":", 2))[0]);
 	time.min = Number((time.time.split(":", 2))[1]);
 	time.corrected = false;
-	convertTo24(time);
+	pharse24(time);
 	correctMin(time);
 }
 
-function convertTo24(time) {
+function pharse24(time) {
 	if (time.amOrPm == "pm" && time.hour < 12) {
-		time.hour +=12;
+		time.hour24 +=12;
 	} else if (time.amOrPm == "am" && time.hour == 12) {
 		if (time.linar == "start") {
-			time.hour = 0;
+			time.hour24 = 0;
 		} else {
-			time.hour = 24;
+			time.hour24 = 24;
 		}
+	} else {
+		time.hour24 = time.hour
 	}
-	time.time = parseTimeToString(time.hour, time.min);
+	parseTime24ToString(time);
 }
 
 function correctMin(time) {
@@ -105,7 +115,7 @@ function correctMin(time) {
 			}
 		} else {
 			if (time.linar == "start" ) {
-				time.hour++;
+				hourUp(time);
 				time.min = 0;
 			} else {
 				time.min = 30;
@@ -114,15 +124,33 @@ function correctMin(time) {
 	}
 }
 
-function parseTimeToString(hour, min) {
-	return hour + ":" + min;
+function hourUp(time){
+	time.hour24++;
+	time.hour++;
+	if ((time.hour24 > 24) || (time.hour24 = 24 && time.min > 0)) {
+		time.day++;
+	}
+	if (time.hour == 12) {
+		if (time.amOrPm == "am") time.amOrPm = "pm";
+		if (time.amOrPm == "pm") time.amOrPm = "am";
+	} else if (time.hour == 13) {
+		time.hour = 1;
+	}
+}
+
+function parseTime24ToString() {
+	time.time24 = time.hour24 + ":" + time.min;
+}
+
+function parseTimeToString(time) {
+	return time.hour + ":" + time.min + " " + time.amOrPm;
 }
 
 function ensureLinarity(start, end) {
-	if ((start.hour > end.hour) || (start.hour == end.hour && start.min > end.min)) {
+	if ((start.hour24 > end.hour24) || (start.hour24 == end.hour24 && start.min > end.min)) {
 		alert("ERR: Timetravel Required - The start of your shift must occur before the end.");
 		return false;
-	} else	if (start.hour == end.hour && start.min == end.min) {
+	} else	if (start.hour24 == end.hour24 && start.min == end.min) {
 		alert("ERR: Linarity - This day has no aviablity set on this day.")
 		return false
 	}

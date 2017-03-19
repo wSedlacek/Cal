@@ -62,10 +62,10 @@ function parseTimeToObj(time, linar) {
 	time.weekDay = time.elementArr[1];
 	time.day = generateDay(time.weekDay);
 	time.time = (document.getElementById(time.elementId)).value;
-	time.amOrPm = (start.time.split(" ", 2))[1];
-	time.time = (start.time.split(" ", 2))[0];
-	time.hour = Number((start.time.split(":", 2))[0]);
-	time.min = Number((start.time.split(":", 2))[1]);
+	time.amOrPm = (time.time.split(" ", 2))[1];
+	time.time = (time.time.split(" ", 2))[0];
+	time.hour = Number((time.time.split(":", 2))[0]);
+	time.min = Number((time.time.split(":", 2))[1]);
 	convertTo24(time);
 }
 

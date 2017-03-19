@@ -60,16 +60,12 @@ function parseStartAndEnd(elementId, start, end) {
 	parseTimeToObj(end, "end");
 	if ((start.corrected && start.valid) || (end.corrected && end.valid)) {
 		alert("Shifts work in 30 min increments. Your selected time will be rounded to the next 30 minute mark.");
-		if (start.corrected && start.valid) setTimePickerValue(start);
-		if (end.corrected && end.valid) setTimePickerValue(end);
+		if (start.corrected && start.valid) setTimePickerValue(start.element, start.time);
+		if (end.corrected && end.valid) setTimePickerValue(end.element, end.time);
 	}
 	if (start.hour24 >= 23 || end.hour24 <= 2) {
 		alert("Please try to select more aviablity.")
 	}
-}
-
-function setTimePickerValue(time) {
-	time.element.value = time.timeString;
 }
 
 function parseTimeToObj(time, linar) {
@@ -398,7 +394,15 @@ function totalHours(shift, text, id) {
 
 function clearTime(id) {
 	//Add code to clear out the boxes that match the id.
+	start = document.getElementById(id+"-start");
+	end = document.getElementById(id+"-end");
+	setTimePickerValue(start, "")
+	setTimePickerValue(end, "")
 	alert(id+" wants to be cleared!");
+}
+
+function setTimePickerValue(element, value) {
+	element.value = time.timeString;
 }
 
 function showHideOvr(weekDayOvr) {

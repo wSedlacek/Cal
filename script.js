@@ -147,7 +147,7 @@ function hourUp(time){
 function parseTime24ToString(time) {
 	time.min = (time.min < 10 ? '0' : '') + time.min;
 	time.time24 = time.hour24 + ":" + time.min;
-	alert(time24);
+	alert(time.time24);
 }
 
 function parseTimeToString(time) {

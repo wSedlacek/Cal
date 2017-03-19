@@ -70,6 +70,7 @@ function parseStartAndEnd(elementId, start, end) {
 }
 
 function setTimePickerValue(time) {
+	alert(time.element + " set value to " + time.time);
 	time.element.value = time.time;
 }
 

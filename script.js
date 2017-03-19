@@ -402,7 +402,7 @@ function clearTime(id) {
 }
 
 function setTimePickerValue(element, value) {
-	element.value = time.timeString;
+	element.value = value;
 }
 
 function showHideOvr(weekDayOvr) {

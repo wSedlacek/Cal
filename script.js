@@ -146,7 +146,7 @@ function parseTime24ToString(time) {
 }
 
 function parseTimeToString(time) {
-	time.timeString + ":" + time.min + " " + time.amOrPm;
+	time.timeString = time.hour + ":" + time.min + " " + time.amOrPm;
 }
 
 function ensureLinarity(start, end) {

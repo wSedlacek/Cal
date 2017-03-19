@@ -17,72 +17,79 @@ function pendShift(elementId) {
 }
 
 function pharseShift(elementId) {
-	var elementArr = elementId.split("-",3);
-	var elementStartId;
-	var elementStartArr;
-	var elementEndId;
-	var elementEndArr;
+	var start = new Object();
+	var end = new Object();
 
-	var type = elementArr[0];
-	var weekDay = elementArr[1];
-	var startOrEnd = elementArr[2];
-
-	if (startOrEnd == "end" ) {
-		elementStartId = elementArr[0] + "-" + elementArr[1] + "-start";
-		elementStartArr = elementStartId.split("-",3);
-		elementEndId = elementId;
-		elementEndArr = elementArr;
-	} else {
-		elementStartId = elementId;
-		elementStartArr = elementArr;
-		elementEndId = elementArr[0] + "-" + elementArr[1] + "-end";
-		elementEndArr = elementEndId.split("-",3);
-	}
-
-	var startTime = (document.getElementById(elementStartId)).value;
-	var endTime = (document.getElementById(elementEndId)).value;
-
-	var startAmOrPm = (startTime.split(" ", 2))[1];
-	startTime = (startTime.split(" ", 2))[0];
-	var startHour = Number((startTime.split(":", 2))[0]);
-	var startMin = Number((startTime.split(":", 2))[1]);
-	if (startAmOrPm == "pm" && startHour < 12) {
-		startHour +=12;
-		startTime = startHour + ":" + startMin
-	} else if (startAmOrPm == "am" && startHour == 12) {
-		startHour = 0;
-	}
-
-	var endAmOrPm = (endTime.split(" ", 2))[1];
-	endTime = (endTime.split(" ", 2))[0];
-	var endHour = Number((endTime.split(":", 2))[0]);
-	var endMin = Number((endTime.split(":", 2))[1]);
-	if (endAmOrPm == "pm" && endHour < 12) {
-		endHour +=12;
-		endTime = endHour + ":" + endMin
-	} else if (endAmOrPm == "am" && endHour == 12) {
-		endHour = 24;
-	}
-
-	if (startHour > endHour) {
-		endHour = startHour + 2;
-	}
-
-	var curDate = new Date();
-	var curDay = Number((String(curDate).split(" ", 4))[2]);
-	var curWeekDay = (String(curDate).split(" ", 2))[0];
-	var day =  generateStartDay(curDay, curWeekDay, weekDay);
+	parseStartAndEnd(elementId, start, end);
+	ensureLinarity(start, end, 2);
 
 	var shift = new Object();
-	shift.startHour = startHour;
-	shift.endHour = endHour;
-	shift.startMin = startMin;
-	shift.endMin = endMin;
-	shift.weekDay = weekDay;
-	shift.day = day;
-	shift.type = type;
+	shift.startHour = start.hour;
+	shift.endHour = end.hour;
+	shift.startMin = start.min;
+	shift.endMin = end.min;
+	shift.weekDay = start.weekDay;
+	shift.day = start.day;
+	shift.type = start.type;
 
 	return shift;
+}
+
+parseStartAndEnd(elementId, start, end) {
+	var element = new Object();
+	element.id = elementId;
+	element.arr = element.id.split("-",3);
+	element.linar = element.arr[2];
+	if (element.linar == "end" ) {
+		start.elementId = element.arr[0] + "-" + element.arr[1] + "-start";
+		start.elementArr = start.elementId.split("-",3);
+		end.elementId = element.id;
+		end.elementArr = element.arr;
+	} else {
+		start.elementId = element.id;
+		start.elementArr = element.arr;
+		end.elementId = element.arr[0] + "-" + element.arr[1] + "-end";
+		end.elementArr = end.elementId.split("-",3);
+	}
+
+	parseTimeToObj(start, "start");
+	parseTimeToObj(end, "end");
+}
+
+parseTimeToObj(time, linar) {
+	start.linar = linar;
+	time.type = element.arr[0];
+	time.weekDay = time.arr[1];
+	time.day = generateDay(weekDay);
+	time.time = (document.getElementById(time.elementId)).value;
+	time.amOrPm = (start.time.split(" ", 2))[1];
+	time.time = (start.time.split(" ", 2))[0];
+	time.hour = Number((start.time.split(":", 2))[0]);
+	time.min = Number((start.time.split(":", 2))[1]);
+	convertTo24(time);
+}
+
+convertTo24(time) {
+	if (time.amOrPm == "pm" && time.hour < 12) {
+		time.hour +=12;
+	} else if (time.amOrPm == "am" && time.hour == 12) {
+		if (time.linar == "start") {
+			time.hour = 0;
+		} else {
+			time.hour = 24;
+		}
+	}
+	time.time = parseTimeToString(time.hour, time.min);
+}
+
+parseTimeToString(hour, min) {
+	return hour + ":" + min;
+}
+
+ensureLinarity(start, end, hoursToAdd) {
+	if (start.hour > end.hour) {
+		end.hour = start.hour + hoursToAdd;
+	}
 }
 
 function addPendingShift(shift) {
@@ -101,13 +108,15 @@ function addPendingShift(shift) {
 	addCalEvent(shiftEvent);
 }
 
-
 function addCalEvent(shiftEvent) {
     $('#calendar').fullCalendar('removeEvents', shiftEvent.id);
     $('#calendar').fullCalendar( 'renderEvent', shiftEvent );
 }
 
-function generateStartDay(curDay, curWeekDay, shiftWeekDay) {
+function generateDay(shiftWeekDay) {
+	var curDate = new Date();
+	var curDay = Number((String(curDate).split(" ", 4))[2]);
+	var curWeekDay = (String(curDate).split(" ", 2))[0];
 	var shiftDay;
 	switch (curWeekDay) {
 		case "Mon":
@@ -128,7 +137,7 @@ function generateStartDay(curDay, curWeekDay, shiftWeekDay) {
 					shiftDay = curDay + 4;
 					break;
 				case "sat":
-					shiftDay = curDay + 5;shiftDay
+					shiftDay = curDay + 5;
 			} break;
 		case "Tue":
 			switch (shiftWeekDay) {
@@ -278,12 +287,16 @@ function generateStartDay(curDay, curWeekDay, shiftWeekDay) {
 	return shiftDay;
 }
 
-function totalCurrentHours(totalPen) {
-	document.getElementById("def-hours-cur").innerHTML = "Current: " + totalPen;
+function totalCurrentHours(totalCur) {
+	totalHours(totalCur, "def-hours-cur");
 }
 
 function totalPendingHours(totalPen) {
-	document.getElementById("def-hours-pen").innerHTML = "Pending: " + totalPen;
+	totalHours(totalPen, "def-hours-pen");
+}
+
+function totalHours(total, id) {
+	document.getElementById(id).innerHTML = "Pending: " + totalPen;
 }
 
 function clearTime(id) {

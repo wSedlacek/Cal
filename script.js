@@ -54,9 +54,14 @@ function parseStartAndEnd(elementId, start, end) {
 		end.elementId = element.arr[0] + "-" + element.arr[1] + "-end";
 		end.elementArr = end.elementId.split("-",3);
 	}
-
 	parseTimeToObj(start, "start");
 	parseTimeToObj(end, "end");
+	if (start.corrected || end.corrected) {
+		alert("Shifts work in 30 min increments. Your selected time will be rounded to the next 30 minute mark.");
+	}
+	if (start.hour >= 23 || end.hour <= 2) {
+		alert("Please try to select more aviablity.")
+	}
 }
 
 function parseTimeToObj(time, linar) {
@@ -69,6 +74,7 @@ function parseTimeToObj(time, linar) {
 	time.time = (time.time.split(" ", 2))[0];
 	time.hour = Number((time.time.split(":", 2))[0]);
 	time.min = Number((time.time.split(":", 2))[1]);
+	time.corrected = false;
 	convertTo24(time);
 	correctMin(time);
 }
@@ -88,12 +94,20 @@ function convertTo24(time) {
 
 function correctMin(time) {
 	if (time.min != 0 && time.min != 30) {
-		alert("Shifts work in 30 min increments. Your selected time will be rounded to the next 30 minute mark.");
+		time.corrected = true;
 		if (time.min < 30) {
-			time.min = 30;
+			if (time.linar == "start" ) {
+				time.min = 30;
+			} else {
+				time.min = 0;
+			}
 		} else {
-			time.hour++;
-			time.min = 0;
+			if (time.linar == "start" ) {
+				time.hour++;
+				time.min = 0;
+			} else {
+				time.min = 30;
+			}
 		}
 	}
 }
